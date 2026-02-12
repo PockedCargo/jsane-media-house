@@ -9,149 +9,166 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;scroll-behavior:smooth}
-body{background:#050505;color:#fff}
+* { margin:0; padding:0; box-sizing:border-box; font-family:Inter,sans-serif; scroll-behavior:smooth }
+body { background:#050505; color:#fff }
 
-nav{
-position:fixed;top:0;width:100%;padding:14px 40px;
-display:flex;justify-content:space-between;align-items:center;
-background:rgba(0,0,0,.6);backdrop-filter:blur(10px);z-index:999
+/* NAV */
+nav {
+  position:fixed; top:0; width:100%; padding:14px 40px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(0,0,0,.6); backdrop-filter:blur(10px); z-index:999
 }
-nav img{height:40px}
-nav a{color:#ccc;text-decoration:none;margin:0 12px;font-size:14px}
-nav a:hover{color:#00ffff}
+nav img { height:40px }
+nav a { color:#ccc; text-decoration:none; margin:0 12px; font-size:14px }
+nav a:hover { color:#00ffff }
 
-.hero{
-height:90vh;display:flex;align-items:center;justify-content:center;
-text-align:center;background:linear-gradient(120deg,#000,#0a0a0a,#000);
+/* HERO */
+.hero {
+  height:90vh; display:flex; align-items:center; justify-content:center;
+  text-align:center; background:linear-gradient(120deg,#000,#0a0a0a,#000);
 }
-.hero h1{font-size:70px;font-weight:800}
-.hero p{color:#ccc;margin-top:10px}
+.hero h1 { font-size:70px; font-weight:800 }
+.hero p { color:#ccc; margin-top:10px }
 
-section{padding:120px 40px;max-width:1200px;margin:auto}
-h2{text-align:center;margin-bottom:40px;color:#00ffff}
+/* SECTIONS */
+section { padding:120px 40px; max-width:1200px; margin:auto }
+h2 { text-align:center; margin-bottom:40px; color:#00ffff }
 
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{
-background:#111;padding:24px;border-radius:16px;border:1px solid #222;
-transition:.3s
+/* SERVICES */
+.services { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px }
+.card {
+  background:#111; padding:24px; border-radius:16px; border:1px solid #222;
+  transition:.3s
 }
-.card:hover{transform:translateY(-8px);border-color:#00ffff}
+.card:hover { transform:translateY(-8px); border-color:#00ffff }
 
-.filter{display:flex;justify-content:center;gap:10px;margin-bottom:20px}
-.filter button{
-background:#111;border:none;color:#ccc;padding:8px 14px;border-radius:8px;cursor:pointer
+/* PORTFOLIO */
+.filter { display:flex; justify-content:center; gap:10px; margin-bottom:20px }
+.filter button {
+  background:#111; border:none; color:#ccc; padding:8px 14px; border-radius:8px; cursor:pointer
 }
-.filter button:hover{background:#00ffff;color:#000}
+.filter button:hover { background:#00ffff; color:#000 }
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.grid img,.grid video{width:100%;border-radius:12px;cursor:pointer}
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px }
+.grid img, .grid video { width:100%; border-radius:12px; cursor:pointer }
 
-.lightbox{
-position:fixed;inset:0;background:rgba(0,0,0,.9);
-display:none;justify-content:center;align-items:center;z-index:2000
+/* LIGHTBOX */
+.lightbox {
+  position:fixed; inset:0; background:rgba(0,0,0,.9);
+  display:none; justify-content:center; align-items:center; z-index:2000
 }
-.lightbox img{max-width:90%;max-height:90%}
+.lightbox img { max-width:90%; max-height:90% }
 
-footer{text-align:center;padding:40px;color:#777}
+/* FOOTER */
+footer { text-align:center; padding:40px; color:#777 }
 
-.whatsapp{
-position:fixed;bottom:20px;right:20px;background:#25D366;
-padding:16px;border-radius:50%;font-size:26px;color:white
+/* WHATSAPP */
+.whatsapp {
+  position:fixed; bottom:20px; right:20px; background:#25D366;
+  padding:16px; border-radius:50%; font-size:26px; color:white
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
-<img src="logo.png" alt="Jsane Media House Logo">
-<div>
-<a href="#services">Services</a>
-<a href="#portfolio">Photos</a>
-<a href="#videos">Videos</a>
-<a href="#contact">Contact</a>
-</div>
+  <img src="logo.png" alt="Jsane Media House Logo">
+  <div>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Photos</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-<div>
-<h1>Jsane Media House</h1>
-<p>Photography • Videography • Digital • IT Solutions</p>
-</div>
+  <div>
+    <h1>Jsane Media House</h1>
+    <p>Photography • Videography • Digital • IT Solutions</p>
+  </div>
 </div>
 
+<!-- SERVICES -->
 <section id="services">
-<h2>Our Services</h2>
-<div class="services">
-<div class="card"><h3>Photography</h3><p>Professional studio & event photography.</p></div>
-<div class="card"><h3>Videography</h3><p>Cinematic storytelling and reels.</p></div>
-<div class="card"><h3>Digital Marketing</h3><p>Social media & brand strategy.</p></div>
-<div class="card"><h3>IT Solutions</h3><p>Websites & digital systems.</p></div>
-</div>
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="card"><h3>Photography</h3><p>Professional studio & event photography.</p></div>
+    <div class="card"><h3>Videography</h3><p>Cinematic storytelling and reels.</p></div>
+    <div class="card"><h3>Digital Marketing</h3><p>Social media & brand strategy.</p></div>
+    <div class="card"><h3>IT Solutions</h3><p>Websites & digital systems.</p></div>
+  </div>
 </section>
 
+<!-- PHOTO PORTFOLIO -->
 <section id="portfolio">
-<h2>Photography Portfolio</h2>
+  <h2>Photography Portfolio</h2>
 
-<div class="filter">
-<button onclick="showCategory('all')">All</button>
-<button onclick="showCategory('studio')">Studio</button>
-<button onclick="showCategory('embassy')">Embassy</button>
-<button onclick="showCategory('events')">Events</button>
-</div>
+  <div class="filter">
+    <button onclick="showCategory('all')">All</button>
+    <button onclick="showCategory('studio')">Studio</button>
+    <button onclick="showCategory('embassy')">Embassy</button>
+    <button onclick="showCategory('events')">Events</button>
+  </div>
 
-<div class="grid" id="photoGrid">
-<img src="Photos/718A0334.JPG" data-cat="studio" alt="">
-<img src="Photos/IHP_1322.JPG" data-cat="studio" alt="">
-
-<img src="Photos/IMG_0059.jpg" data-cat="embassy" alt="">
-<img src="Photos/IMG_0061.jpg" data-cat="embassy" alt="">
-
-<img src="Photos/IMG_0268.jpg" data-cat="events" alt="">
-<img src="Photos/IMG_0328.jpg" data-cat="events" alt="">
-<img src="Photos/IMG_0458-1.jpg" data-cat="events" alt="">
-<img src="Photos/Nhif_1_1.jpg" data-cat="events" alt="">
-</div>
+  <div class="grid" id="photoGrid">
+    <img src="Photos/718A0334.JPG" data-cat="studio" alt="">
+    <img src="Photos/IHP_1322.JPG" data-cat="studio" alt="">
+    <img src="Photos/IMG_0059.jpg" data-cat="embassy" alt="">
+    <img src="Photos/IMG_0061.jpg" data-cat="embassy" alt="">
+    <img src="Photos/IMG_0268.jpg" data-cat="events" alt="">
+    <img src="Photos/IMG_0328.jpg" data-cat="events" alt="">
+    <img src="Photos/IMG_0458-1.jpg" data-cat="events" alt="">
+    <img src="Photos/Nhif_1_1.jpg" data-cat="events" alt="">
+  </div>
 </section>
 
+<!-- VIDEOS -->
 <section id="videos">
-<h2>Videography Projects</h2>
-<div class="grid">
-<video src="Reel/0730.mp4" controls></video>
-<video src="Reel/1221_1.mp4" controls></video>
-<video src="Reel/FOR_IG.mp4" controls></video>
-<video src="Reel/Jsane_Photography.mp4" controls></video>
-</div>
+  <h2>Videography Projects</h2>
+  <div class="grid">
+    <video src="Reel/0730.mp4" controls></video>
+    <video src="Reel/1221_1.mp4" controls></video>
+    <video src="Reel/FOR_IG.mp4" controls></video>
+    <video src="Reel/Jsane_Photography.mp4" controls></video>
+  </div>
 </section>
 
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
-<img id="lightboxImg">
+  <img id="lightboxImg">
 </div>
 
+<!-- CONTACT -->
 <section id="contact">
-<h2>Contact & Booking</h2>
-<p style="text-align:center">WhatsApp: +254708751365</p>
+  <h2>Contact & Booking</h2>
+  <p style="text-align:center">WhatsApp: +254708751365</p>
 </section>
 
+<!-- FOOTER -->
 <footer>© 2026 Jsane Media House</footer>
 
+<!-- WHATSAPP BUTTON -->
 <a class="whatsapp" href="https://wa.me/254708751365" target="_blank">
-<i class="fab fa-whatsapp"></i>
+  <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-function showCategory(cat){
-document.querySelectorAll('#photoGrid img').forEach(img=>{
-img.style.display = (cat==="all" || img.dataset.cat===cat) ? "block" : "none";
-});
+// PHOTO FILTER
+function showCategory(cat) {
+  document.querySelectorAll('#photoGrid img').forEach(img => {
+    img.style.display = (cat === "all" || img.dataset.cat === cat) ? "block" : "none";
+  });
 }
 
-document.querySelectorAll('#photoGrid img').forEach(img=>{
-img.onclick=()=>{
-document.getElementById('lightbox').style.display="flex";
-document.getElementById('lightboxImg').src=img.src;
-}
+// LIGHTBOX
+document.querySelectorAll('#photoGrid img').forEach(img => {
+  img.onclick = () => {
+    document.getElementById('lightbox').style.display = "flex";
+    document.getElementById('lightboxImg').src = img.src;
+  }
 });
 </script>
 
