@@ -50,7 +50,7 @@ h2 { text-align:center; margin-bottom:40px; color:#00ffff }
 .filter button:hover { background:#00ffff; color:#000 }
 
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px }
-.grid img, .grid video { width:100%; border-radius:12px; cursor:pointer }
+.grid img, .grid iframe { width:100%; border-radius:12px; cursor:pointer; aspect-ratio:16/9 }
 
 /* LIGHTBOX */
 .lightbox {
@@ -114,14 +114,14 @@ footer { text-align:center; padding:40px; color:#777 }
   </div>
 
   <div class="grid" id="photoGrid">
-    <img src="Photos/718A0334.JPG" data-cat="studio" alt="">
-    <img src="Photos/IHP_1322.JPG" data-cat="studio" alt="">
-    <img src="Photos/IMG_0059.jpg" data-cat="embassy" alt="">
-    <img src="Photos/IMG_0061.jpg" data-cat="embassy" alt="">
-    <img src="Photos/IMG_0268.jpg" data-cat="events" alt="">
-    <img src="Photos/IMG_0328.jpg" data-cat="events" alt="">
-    <img src="Photos/IMG_0458-1.jpg" data-cat="events" alt="">
-    <img src="Photos/Nhif_1_1.jpg" data-cat="events" alt="">
+    <img src="photos/718a0334.jpg" data-cat="studio" alt="">
+    <img src="photos/ihp_1322.jpg" data-cat="studio" alt="">
+    <img src="photos/img_0059.jpg" data-cat="embassy" alt="">
+    <img src="photos/img_0061.jpg" data-cat="embassy" alt="">
+    <img src="photos/img_0268.jpg" data-cat="events" alt="">
+    <img src="photos/img_0328.jpg" data-cat="events" alt="">
+    <img src="photos/img_0458-1.jpg" data-cat="events" alt="">
+    <img src="photos/nhif_1_1.jpg" data-cat="events" alt="">
   </div>
 </section>
 
@@ -129,10 +129,14 @@ footer { text-align:center; padding:40px; color:#777 }
 <section id="videos">
   <h2>Videography Projects</h2>
   <div class="grid">
-    <video src="Reel/0730.mp4" controls></video>
-    <video src="Reel/1221_1.mp4" controls></video>
-    <video src="Reel/FOR_IG.mp4" controls></video>
-    <video src="Reel/Jsane_Photography.mp4" controls></video>
+    <!-- Plainsview -->
+    <iframe src="https://www.youtube.com/embed/TpP-SVttyC8" title="Plainsview Video" frameborder="0" allowfullscreen></iframe>
+    <!-- New Video 1 -->
+    <iframe src="https://www.youtube.com/embed/emv3XXILQJk" title="Video 2" frameborder="0" allowfullscreen></iframe>
+    <!-- New Video 2 -->
+    <iframe src="https://www.youtube.com/embed/64epsUWH9_Q" title="Video 3" frameborder="0" allowfullscreen></iframe>
+    <!-- New Video 3 -->
+    <iframe src="https://www.youtube.com/embed/8STPff_x9P4" title="Video 4" frameborder="0" allowfullscreen></iframe>
   </div>
 </section>
 
