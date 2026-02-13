@@ -5,133 +5,87 @@
 <title>Jsane Media House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEV8PFXZC3"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-FEV8PFXZC3');
-</script>
-
-<!-- SEO -->
-<meta name="description" content="Jsane Media House - Photography, Videography, Digital Marketing & IT Solutions in Nairobi, Kenya.">
-<meta name="keywords" content="Photography Nairobi, Videography Kenya, Media House Nairobi, Digital Marketing Kenya">
-<meta name="author" content="Jsane Media House">
-
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="favicon_io/Jfavicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:#050505;color:#fff}
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:black;
+  color:white;
+  overflow-x:hidden;
+}
 
-nav{position:fixed;top:0;width:100%;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);z-index:999}
-nav img{height:40px}
-nav a{color:#ccc;text-decoration:none;margin:0 12px}
-nav a:hover{color:#00ffff}
+/* Floating dots */
+.dots span {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: float 20s linear infinite;
+  opacity:0.4;
+}
 
-.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-top:80px}
-.hero h1{font-size:64px}
-.hero p{color:#ccc;margin-top:10px}
+@keyframes float {
+  from {transform: translateY(100vh);}
+  to {transform: translateY(-10vh);}
+}
 
-section{padding:120px 40px;max-width:1200px;margin:auto}
-h2{text-align:center;margin-bottom:40px;color:#00ffff}
+/* Stars */
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity:0.1;
+  z-index:-1;
+}
 
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{background:#111;padding:24px;border-radius:16px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.grid img{width:100%;border-radius:12px}
-
-iframe{border-radius:12px}
-
-footer{text-align:center;padding:40px;color:#777}
-
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:16px;border-radius:50%;font-size:26px;color:white}
-
-.socials a{font-size:22px;margin:0 10px;color:#00ffff}
-button{padding:12px 24px;border:none;border-radius:20px;background:#00ffff;color:black;font-weight:bold;cursor:pointer}
+section {padding:40px;text-align:center;}
+iframe {max-width:100%;border-radius:12px;}
 </style>
 </head>
 
 <body>
 
-<nav>
-<img src="logo.png">
-<div>
-<a href="#services">Services</a>
-<a href="#portfolio">Photos</a>
-<a href="#videos">Videos</a>
-<a href="#booking">Booking</a>
-<a href="#contact">Contact</a>
-</div>
-</nav>
+<div class="stars"></div>
 
-<div class="hero">
-<div>
-<h1>Jsane Media House</h1>
-<p>Photography • Videography • Digital • IT Solutions</p>
-<br>
-<a href="https://share.google/luq9Ta9ouzvQ9YTzi" target="_blank">
-<button>⭐ View Google Reviews</button>
-</a>
-</div>
+<div class="dots">
+  <span style="left:10%;animation-duration:12s"></span>
+  <span style="left:30%;animation-duration:18s"></span>
+  <span style="left:50%;animation-duration:14s"></span>
+  <span style="left:70%;animation-duration:20s"></span>
+  <span style="left:90%;animation-duration:16s"></span>
 </div>
 
-<section id="services">
-<h2>Our Services</h2>
-<div class="services">
-<div class="card">Photography</div>
-<div class="card">Videography</div>
-<div class="card">Digital Marketing</div>
-<div class="card">IT Solutions</div>
-</div>
+<section>
+<h1>JSANE MEDIA HOUSE</h1>
+<p>Photography | Videography | Editing</p>
 </section>
 
-<section id="portfolio">
-<h2>Portfolio</h2>
-<div class="grid">
-<img src="Photos/718A0334.webp">
-<img src="Photos/IHP_1322.webp">
-<img src="Photos/IMG_0059.webp">
-<img src="Photos/IMG_0061.webp">
-</div>
-</section>
+<section>
+<h2>Watch Our Work</h2>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/64epsUWH9_Q"
+allowfullscreen></iframe>
 
-<section id="videos">
-<h2>Videos</h2>
-<iframe width="100%" height="360" src="https://www.youtube-nocookie.com/embed/emv3XXILQJk" allowfullscreen></iframe>
 <br><br>
-<iframe width="100%" height="360" src="https://www.youtube-nocookie.com/embed/TpP-SVttyC8" allowfullscreen></iframe>
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/8STPff_x9P4"
+allowfullscreen></iframe>
 </section>
 
-<section id="booking">
+<section>
 <h2>Book a Session</h2>
-<iframe src="https://calendly.com/jsanemediah/30min?embed_domain=jsane-media-house.vercel.app&embed_type=Inline" width="100%" height="600"></iframe>
+<iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id_here"
+style="border:0" width="800" height="600"></iframe>
 </section>
 
-<section id="contact">
-<h2>Contact</h2>
-<p>Email: jsanemediah@gmail.com</p>
-<div class="socials">
-<a href="https://www.instagram.com/jsane_media_house/" target="_blank"><i class="fab fa-instagram"></i></a>
-<a href="https://www.facebook.com/jsanephotography/" target="_blank"><i class="fab fa-facebook"></i></a>
-<a href="https://www.linkedin.com/in/jimnah-kabiria-/" target="_blank"><i class="fab fa-linkedin"></i></a>
-<a href="https://www.youtube.com/@jsanemediahouse4751" target="_blank"><i class="fab fa-youtube"></i></a>
-</div>
+<section>
+<h2>Google Reviews</h2>
+<p>★★★★★ 5.0 (placeholder until API key added)</p>
 </section>
-
-<footer>© 2026 Jsane Media House</footer>
-<a class="whatsapp" href="https://wa.me/254708751365" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 </body>
 </html>
