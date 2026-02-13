@@ -14,6 +14,15 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
 <link rel="manifest" href="favicon_io/site.webmanifest">
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEV8PFXZC3"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-FEV8PFXZC3');
+</script>
+
 <!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -22,20 +31,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
-<!-- Google Analytics -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEV8PFXZC3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FEV8PFXZC3');
-</script>
-
 <!-- Styles -->
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:Inter, sans-serif; scroll-behavior:smooth; }
 body { background:#050505; color:#fff; overflow-x:hidden; }
+
+/* Loader */
+#loader { position:fixed; inset:0; background:#050505; display:flex; justify-content:center; align-items:center; z-index:3000; }
+#loader div { width:50px; height:50px; border:5px solid #00ffff; border-top:5px solid #050505; border-radius:50%; animation: spin 1s linear infinite; }
+@keyframes spin { 0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
 
 /* NAV */
 nav { position:fixed; top:0; width:100%; padding:14px 40px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,.6); backdrop-filter:blur(10px); z-index:999; }
@@ -68,7 +72,6 @@ h2 { text-align:center; margin-bottom:40px; color:#00ffff; }
 .filter { display:flex; justify-content:center; gap:10px; margin-bottom:20px; }
 .filter button { background:#111; border:none; color:#ccc; padding:8px 14px; border-radius:8px; cursor:pointer; }
 .filter button:hover { background:#00ffff; color:#000; }
-
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
 .grid img { width:100%; height:auto; border-radius:12px; cursor:pointer; object-fit:cover; }
 
@@ -81,25 +84,23 @@ h2 { text-align:center; margin-bottom:40px; color:#00ffff; }
 .youtube-grid iframe, .youtube-grid video { width:100%; height:200px; border-radius:12px; }
 @media(min-width:768px){ .youtube-grid iframe, .youtube-grid video { height:300px; } }
 
-/* FOOTER */
-footer { text-align:center; padding:40px; color:#777; display:flex; flex-direction:column; align-items:center; gap:10px; }
-
 /* SOCIAL ICONS */
-.social-icons { display:flex; gap:12px; justify-content:center; align-items:center; margin-bottom:10px; }
-.social-icons a { color:#fff; font-size:24px; transition:.3s; }
-.social-icons a:hover { color:#00ffff; }
+.socials { display:flex; justify-content:center; gap:12px; margin-top:20px; }
+.socials a { display:inline-block; width:36px; height:36px; color:white; font-size:18px; border-radius:8px; background:#111; display:flex; justify-content:center; align-items:center; transition:.3s; }
+.socials a:hover { background:#00ffff; color:#000; }
+
+/* FOOTER */
+footer { text-align:center; padding:40px; color:#777; }
 
 /* WHATSAPP */
-.whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; padding:16px; border-radius:50%; font-size:26px; color:white; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-
-/* FORMS */
-form input, form textarea { background:#111; border:1px solid #333; color:#fff; padding:10px; border-radius:8px; width:100%; margin-bottom:10px; }
-form button { background:#00ffff; color:#000; border:none; padding:12px 24px; border-radius:8px; cursor:pointer; }
-form button:hover { background:#0ff; }
+.whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; padding:16px; border-radius:50%; font-size:26px; color:white; cursor:pointer; }
 </style>
 </head>
 
 <body>
+<!-- Loader -->
+<div id="loader"><div></div></div>
+
 <!-- NAV -->
 <nav>
     <img src="logo.png" alt="Jsane Media House Logo">
@@ -108,6 +109,7 @@ form button:hover { background:#0ff; }
         <a href="#portfolio">Photos</a>
         <a href="#videos">Videos</a>
         <a href="#contact">Contact</a>
+        <a href="#admin">Admin</a>
     </div>
 </nav>
 
@@ -163,53 +165,76 @@ form button:hover { background:#0ff; }
     </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
-    <img id="lightboxImg">
-</div>
-
-<!-- CONTACT / BOOKING -->
+<!-- CONTACT -->
 <section id="contact">
     <h2>Contact & Booking</h2>
-    <form id="contactForm">
-        <input type="text" name="user_name" placeholder="Your Name" required>
-        <input type="email" name="user_email" placeholder="Your Email" required>
-        <textarea name="user_message" placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
+    <p style="text-align:center">WhatsApp: +254708751365</p>
+    <!-- Email Form -->
+    <form id="contactForm" style="max-width:500px;margin:auto;text-align:left;">
+        <label>Name</label><input type="text" name="name" required style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
+        <label>Email</label><input type="email" name="email" required style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
+        <label>Message</label><textarea name="message" required style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;"></textarea>
+        <button type="submit" style="padding:10px 20px;background:#00ffff;border:none;color:#000;border-radius:6px;cursor:pointer;">Send</button>
     </form>
-    <p style="text-align:center;margin:10px 0;">Book a 30-min session: <a href="https://calendly.com/jsanemediah/30min" target="_blank" style="color:#00ffff;">Click Here</a></p>
 </section>
 
-<!-- FOOTER / SOCIAL -->
-<footer>
-    <div class="social-icons">
-        <a href="https://www.instagram.com/jsane_media_house/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/jsanephotography/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/jimnah-kabiria-/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://www.youtube.com/@jsanemediahouse4751" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-    <p>© 2026 Jsane Media House | Nairobi, Kenya</p>
-</footer>
+<!-- BOOKING -->
+<section id="booking">
+    <h2>Book a Session</h2>
+    <iframe src="https://calendly.com/jsanemediah/30min" width="100%" height="700" frameborder="0"></iframe>
+</section>
 
-<!-- WhatsApp -->
+<!-- ADMIN -->
+<section id="admin">
+    <h2>Admin Panel</h2>
+    <div id="adminLogin" style="max-width:400px;margin:auto;text-align:center;">
+        <input type="email" id="adminEmail" placeholder="Email" value="jsanemediah@gmail.com" style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
+        <input type="password" id="adminPassword" placeholder="Password" value="@Jsane2026#!" style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
+        <button onclick="loginAdmin()" style="padding:10px 20px;background:#00ffff;border:none;color:#000;border-radius:6px;cursor:pointer;">Login</button>
+    </div>
+    <div id="adminDashboard" style="display:none;">
+        <h3>Welcome, Admin!</h3>
+        <p>Use this panel to upload photos and update content.</p>
+        <!-- Additional admin features can be integrated here -->
+    </div>
+</section>
+
+<!-- SOCIALS -->
+<div class="socials">
+    <a href="https://www.instagram.com/jsane_media_house/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/jsanephotography/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/in/jimnah-kabiria-/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.youtube.com/@jsanemediahouse4751" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+
+<footer>© 2026 Jsane Media House</footer>
 <a class="whatsapp" href="https://wa.me/254708751365" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-emailjs.init("rvlCj7Do8dIWWhxib"); // Public Key
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    emailjs.sendForm('service_c1xmy9k', 'template_jvhwki7', this)
-        .then(function() {
-            alert('Message sent successfully!');
-            document.getElementById('contactForm').reset();
-        }, function(error) {
-            alert('Failed to send message: ' + JSON.stringify(error));
-        });
-});
+<script>
+// Loader
+window.addEventListener("load",()=>{document.getElementById("loader").style.display="none";});
+
+// Supabase Client
+const supabase = supabase.createClient(
+  "https://gsixwwydstdblcnslomh.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXh3d3lkc3RkYmxjbnNsb21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NzYxNzksImV4cCI6MjA4NjU1MjE3OX0.oC-qmnQtpPM5yYYPEQ6tBZoFK0O1lZJdMhYNhz_v_64"
+);
+
+// Admin login
+function loginAdmin(){
+    const email = document.getElementById("adminEmail").value;
+    const password = document.getElementById("adminPassword").value;
+    if(email==="jsanemediah@gmail.com" && password==="@Jsane2026#!"){
+        document.getElementById("adminLogin").style.display="none";
+        document.getElementById("adminDashboard").style.display="block";
+        alert("Welcome, Admin! You can now manage your site.");
+    } else alert("Invalid credentials");
+}
 
 // PHOTO FILTER + LIGHTBOX
 function showCategory(cat){
@@ -262,6 +287,15 @@ window.addEventListener('scroll',()=>{
 });
 initParticles();
 animateParticles();
+
+// EmailJS
+emailjs.init("rvlCj7Do8dIWWhxib");
+document.getElementById('contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    emailjs.sendForm('service_c1xmy9k','template_jvhwki7',this)
+        .then(()=>{alert('Message sent!'); this.reset();})
+        .catch(err=>{alert('Error: '+err);});
+});
 </script>
 </body>
 </html>
