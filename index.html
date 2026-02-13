@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
 <link rel="manifest" href="favicon_io/site.webmanifest">
 
-<!-- Google Analytics -->
+<!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEV8PFXZC3"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -76,12 +76,11 @@ h2 { text-align:center; margin-bottom:40px; color:#00ffff; }
 .grid img { width:100%; height:auto; border-radius:12px; cursor:pointer; object-fit:cover; }
 
 /* LIGHTBOX */
-.lightbox { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; justify-content:center; align-items:center; z-index:2000; }
-.lightbox img { max-width:90%; max-height:90%; }
+#lightbox { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; justify-content:center; align-items:center; z-index:2000; }
+#lightbox img { max-width:90%; max-height:90%; cursor:pointer; }
 
 /* VIDEOS */
-#videos .slick-slide { padding:0 10px; }
-.youtube-grid iframe, .youtube-grid video { width:100%; height:200px; border-radius:12px; }
+.youtube-grid iframe, .youtube-grid video { width:100%; height:200px; border-radius:12px; margin-bottom:10px; }
 @media(min-width:768px){ .youtube-grid iframe, .youtube-grid video { height:300px; } }
 
 /* SOCIAL ICONS */
@@ -94,6 +93,10 @@ footer { text-align:center; padding:40px; color:#777; }
 
 /* WHATSAPP */
 .whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; padding:16px; border-radius:50%; font-size:26px; color:white; cursor:pointer; }
+
+/* ADMIN */
+#adminLogin input { width:100%; padding:8px; margin:5px 0; border-radius:6px; border:none; }
+#adminLogin button { padding:10px 20px; background:#00ffff; border:none; color:#000; border-radius:6px; cursor:pointer; margin-top:10px; }
 </style>
 </head>
 
@@ -154,6 +157,9 @@ footer { text-align:center; padding:40px; color:#777; }
     </div>
 </section>
 
+<!-- LIGHTBOX -->
+<div id="lightbox"><img id="lightboxImg" src="" onclick="closeLightbox()"></div>
+
 <!-- VIDEOS -->
 <section id="videos">
     <h2>Videography Projects</h2>
@@ -169,12 +175,11 @@ footer { text-align:center; padding:40px; color:#777; }
 <section id="contact">
     <h2>Contact & Booking</h2>
     <p style="text-align:center">WhatsApp: +254708751365</p>
-    <!-- Email Form -->
     <form id="contactForm" style="max-width:500px;margin:auto;text-align:left;">
-        <label>Name</label><input type="text" name="name" required style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
-        <label>Email</label><input type="email" name="email" required style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
-        <label>Message</label><textarea name="message" required style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;"></textarea>
-        <button type="submit" style="padding:10px 20px;background:#00ffff;border:none;color:#000;border-radius:6px;cursor:pointer;">Send</button>
+        <label>Name</label><input type="text" name="name" required>
+        <label>Email</label><input type="email" name="email" required>
+        <label>Message</label><textarea name="message" required></textarea>
+        <button type="submit">Send</button>
     </form>
 </section>
 
@@ -188,14 +193,13 @@ footer { text-align:center; padding:40px; color:#777; }
 <section id="admin">
     <h2>Admin Panel</h2>
     <div id="adminLogin" style="max-width:400px;margin:auto;text-align:center;">
-        <input type="email" id="adminEmail" placeholder="Email" value="jsanemediah@gmail.com" style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
-        <input type="password" id="adminPassword" placeholder="Password" value="@Jsane2026#!" style="width:100%;padding:8px;margin:5px 0;border-radius:6px;border:none;">
-        <button onclick="loginAdmin()" style="padding:10px 20px;background:#00ffff;border:none;color:#000;border-radius:6px;cursor:pointer;">Login</button>
+        <input type="email" id="adminEmail" placeholder="Email" value="jsanemediah@gmail.com">
+        <input type="password" id="adminPassword" placeholder="Password" value="@Jsane2026#!">
+        <button onclick="loginAdmin()">Login</button>
     </div>
-    <div id="adminDashboard" style="display:none;">
+    <div id="adminDashboard" style="display:none;text-align:center;">
         <h3>Welcome, Admin!</h3>
-        <p>Use this panel to upload photos and update content.</p>
-        <!-- Additional admin features can be integrated here -->
+        <p>Future content management coming soon.</p>
     </div>
 </section>
 
@@ -211,6 +215,7 @@ footer { text-align:center; padding:40px; color:#777; }
 <a class="whatsapp" href="https://wa.me/254708751365" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
@@ -219,12 +224,6 @@ footer { text-align:center; padding:40px; color:#777; }
 // Loader
 window.addEventListener("load",()=>{document.getElementById("loader").style.display="none";});
 
-// Supabase Client
-const supabase = supabase.createClient(
-  "https://gsixwwydstdblcnslomh.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXh3d3lkc3RkYmxjbnNsb21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NzYxNzksImV4cCI6MjA4NjU1MjE3OX0.oC-qmnQtpPM5yYYPEQ6tBZoFK0O1lZJdMhYNhz_v_64"
-);
-
 // Admin login
 function loginAdmin(){
     const email = document.getElementById("adminEmail").value;
@@ -232,61 +231,36 @@ function loginAdmin(){
     if(email==="jsanemediah@gmail.com" && password==="@Jsane2026#!"){
         document.getElementById("adminLogin").style.display="none";
         document.getElementById("adminDashboard").style.display="block";
-        alert("Welcome, Admin! You can now manage your site.");
+        alert("Welcome, Admin!");
     } else alert("Invalid credentials");
 }
 
-// PHOTO FILTER + LIGHTBOX
+// Photo filter + lightbox
 function showCategory(cat){
     document.querySelectorAll('#photoGrid img').forEach(img=>{
         img.style.display = (cat==="all" || img.dataset.cat===cat) ? "block" : "none";
     });
 }
 document.querySelectorAll('#photoGrid img').forEach(img=>{
-    img.onclick = () => {
-        document.getElementById('lightbox').style.display = "flex";
+    img.onclick = ()=>{ 
+        document.getElementById('lightbox').style.display="flex";
         document.getElementById('lightboxImg').src = img.src;
     }
 });
+function closeLightbox(){ document.getElementById('lightbox').style.display="none"; }
 
-// VIDEO SLIDER
-document.addEventListener('DOMContentLoaded',()=>{
-    const grid = document.querySelector('.youtube-grid');
-    if(grid) $(grid).slick({ slidesToShow:1, slidesToScroll:1, infinite:true, arrows:true, dots:true });
+// Video slider
+$(document).ready(()=>{
+    $('.youtube-grid').slick({slidesToShow:1,slidesToScroll:1,infinite:true,arrows:true,dots:true});
 });
 
-// PARTICLES HERO
-const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
-let w, h, particles=[];
-function initParticles(){
-    w=canvas.width=canvas.offsetWidth;
-    h=canvas.height=canvas.offsetHeight;
-    particles=[];
-    for(let i=0;i<100;i++){
-        particles.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
-    }
-}
-function animateParticles(){
-    ctx.clearRect(0,0,w,h);
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle='rgba(0,255,255,0.3)';
-        ctx.fill();
-        p.x+=p.dx; p.y+=p.dy;
-        if(p.x> w) p.x=0; if(p.x<0) p.x=w;
-        if(p.y> h) p.y=0; if(p.y<0) p.y=h;
-    });
-    requestAnimationFrame(animateParticles);
-}
-window.addEventListener('resize',initParticles);
-window.addEventListener('scroll',()=>{
-    const hero = document.querySelector('.hero');
-    hero.style.opacity = 1 - window.scrollY / 400;
-});
-initParticles();
-animateParticles();
+// Particle background
+const canvas=document.getElementById('particleCanvas');
+const ctx=canvas.getContext('2d'); let w,h,particles=[];
+function initParticles(){ w=canvas.width=canvas.offsetWidth; h=canvas.height=canvas.offsetHeight; particles=[]; for(let i=0;i<100;i++){particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}}
+function animateParticles(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,255,255,0.3)';ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x>w)p.x=0; if(p.x<0)p.x=w; if(p.y>h)p.y=0; if(p.y<0)p.y=h; }); requestAnimationFrame(animateParticles);}
+window.addEventListener('resize',initParticles); initParticles(); animateParticles();
+window.addEventListener('scroll',()=>{document.querySelector('.hero').style.opacity = 1 - window.scrollY / 400;});
 
 // EmailJS
 emailjs.init("rvlCj7Do8dIWWhxib");
