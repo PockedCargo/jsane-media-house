@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jsane Media House</title>
+<title>JSANE MEDIA HOUSE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body {
   margin:0;
@@ -13,79 +12,150 @@ body {
   color:white;
   overflow-x:hidden;
 }
-
-/* Floating dots */
-.dots span {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  animation: float 20s linear infinite;
-  opacity:0.4;
-}
-
-@keyframes float {
-  from {transform: translateY(100vh);}
-  to {transform: translateY(-10vh);}
-}
-
-/* Stars */
-.stars {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(white 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity:0.1;
+canvas {
+  position:fixed;
+  top:0;
+  left:0;
   z-index:-1;
 }
-
-section {padding:40px;text-align:center;}
-iframe {max-width:100%;border-radius:12px;}
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#000000cc;
+}
+header img { height:50px; }
+nav a {
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+}
+section { padding:60px 20px; text-align:center; }
+h1 { color:#00ffff; }
+.services li { list-style:none; margin:8px 0; }
+.video-slider {
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+}
+.video-slider iframe {
+  width:300px;
+  height:170px;
+  border-radius:12px;
+  scroll-snap-align:center;
+}
+.contact a { color:#00ffff; text-decoration:none; }
+footer {
+  background:#000;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+}
 </style>
 </head>
 
 <body>
+<canvas id="stars"></canvas>
 
-<div class="stars"></div>
+<header>
+  <h2>JSANE MEDIA HOUSE</h2>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#videos">Videos</a>
+    <a href="#booking">Booking</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<div class="dots">
-  <span style="left:10%;animation-duration:12s"></span>
-  <span style="left:30%;animation-duration:18s"></span>
-  <span style="left:50%;animation-duration:14s"></span>
-  <span style="left:70%;animation-duration:20s"></span>
-  <span style="left:90%;animation-duration:16s"></span>
+<section>
+  <h1>Professional Photography & Videography</h1>
+  <p>Nairobi, Kenya</p>
+</section>
+
+<section id="services">
+<h1>Our Services</h1>
+<ul class="services">
+<li>Photography</li>
+<li>Videography</li>
+<li>Event Coverage</li>
+<li>Music Videos</li>
+<li>Editing</li>
+<li>Livestreaming</li>
+<li>Digital Marketing</li>
+<li>IT Services</li>
+</ul>
+</section>
+
+<section id="videos">
+<h1>Our Work</h1>
+<div class="video-slider">
+<iframe src="https://www.youtube.com/embed/emv3XXILQJk" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/TpP-SVttyC8" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/64epsUWH9_Q" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/8STPff_x9P4" allowfullscreen></iframe>
 </div>
+</section>
 
-<section>
-<h1>JSANE MEDIA HOUSE</h1>
-<p>Photography | Videography | Editing</p>
+<section id="booking">
+<h1>Book a Session</h1>
+<iframe src="https://calendly.com/jsanemediah/30min" width="100%" height="600" frameborder="0"></iframe>
 </section>
 
 <section>
-<h2>Watch Our Work</h2>
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/64epsUWH9_Q"
-allowfullscreen></iframe>
-
-<br><br>
-
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/8STPff_x9P4"
-allowfullscreen></iframe>
+<h1>Google Reviews</h1>
+<a href="https://share.google/luq9Ta9ouzvQ9YTzi" target="_blank">⭐ View Our Reviews</a>
 </section>
 
-<section>
-<h2>Book a Session</h2>
-<iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id_here"
-style="border:0" width="800" height="600"></iframe>
+<section id="contact" class="contact">
+<h1>Contact Us</h1>
+<p>📞 <a href="tel:+254708751365">+254708751365</a></p>
+<p>💬 <a href="https://wa.me/254708751365">WhatsApp Us</a></p>
+<p>📧 <a href="mailto:jsanemediah@gmail.com">jsanemediah@gmail.com</a></p>
+<p>
+<a href="https://www.facebook.com/jsanephotography/">Facebook</a> |
+<a href="https://www.instagram.com/jsane_media_house/">Instagram</a> |
+<a href="https://www.youtube.com/@jsanemediahouse4751">YouTube</a>
+</p>
 </section>
 
-<section>
-<h2>Google Reviews</h2>
-<p>★★★★★ 5.0 (placeholder until API key added)</p>
-</section>
+<footer>
+© 2026 JSANE MEDIA HOUSE – Nairobi, Kenya
+</footer>
+
+<script>
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let stars=[];
+for(let i=0;i<120;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+d:Math.random()*1
+});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+});
+move();
+}
+function move(){
+stars.forEach(s=>{
+s.y+=s.d;
+if(s.y>canvas.height){s.y=0;}
+});
+}
+setInterval(draw,30);
+</script>
 
 </body>
 </html>
