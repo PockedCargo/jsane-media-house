@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jsane Media House Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body { font-family: Inter, sans-serif; margin:0; background:#050505; color:#fff; }
+header { padding:20px; text-align:center; background:#111; }
+h1 { margin:0; color:#00ffff; }
+.container { padding:20px; max-width:1200px; margin:auto; }
+.tab { display:none; }
+.tabs button { background:#111; color:#ccc; padding:10px 16px; margin-right:6px; border:none; border-radius:6px; cursor:pointer; }
+.tabs button.active { background:#00ffff; color:#000; }
+input, textarea { padding:8px; width:100%; margin:4px 0; border-radius:6px; border:1px solid #222; background:#111; color:#fff; }
+button.submit { background:#00ffff; color:#000; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; margin-top:10px; }
+table { width:100%; border-collapse: collapse; margin-top:20px; }
+table th, table td { border:1px solid #222; padding:8px; text-align:left; }
+table th { background:#111; color:#00ffff; }
+img.thumb { height:60px; border-radius:6px; }
+.delete-btn { background:red; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; }
+.inline-edit { background:#111; color:#fff; border:none; padding:4px 6px; border-radius:4px; cursor:pointer; }
+.logout { position:fixed; top:10px; right:20px; background:#ff0044; color:#fff; padding:8px 12px; border-radius:6px; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Jsane Media House Admin</h1>
+</header>
+
+<div class="container" id="login-container">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button class="submit" onclick="login()">Login</button>
+    <p id="login-msg" style="color:#ff0044;"></p>
+</div>
+
+<div class="container" id="dashboard" style="display:none;">
+    <button class="logout" onclick="logout()">Logout</button>
+    <div class="tabs">
+        <button class="tablink active" onclick="openTab('photos', this)">Photos</button>
+        <button class="tablink" onclick="openTab('videos', this)">Videos</button>
+        <button class="tablink" onclick="openTab('services', this)">Services</button>
+        <button class="tablink" onclick="openTab('messages', this)">Messages</button>
+    </div>
+
+    <!-- PHOTOS -->
+    <div id="photos" class="tab" style="display:block;">
+        <h2>Photos</h2>
+        <input type="file" id="photo-upload">
+        <button class="submit" onclick="uploadPhoto()">Upload Photo</button>
+        <table id="photo-table">
+            <thead><tr><th>Image</th><th>Category</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- VIDEOS -->
+    <div id="videos" class="tab">
+        <h2>Videos</h2>
+        <input type="text" id="video-url" placeholder="YouTube URL">
+        <input type="text" id="video-title" placeholder="Title">
+        <button class="submit" onclick="addVideo()">Add Video</button>
+        <table id="video-table">
+            <thead><tr><th>Title</th><th>URL</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- SERVICES -->
+    <div id="services" class="tab">
+        <h2>Services</h2>
+        <table id="services-table">
+            <thead><tr><th>Service</th><th>Description</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="messages" class="tab">
+        <h2>Contact Form Messages</h2>
+        <table id="messages-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Message</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+<script>
+// Supabase setup
+const supabaseUrl = 'https://gsixwwydstdblcnslomh.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXh3d3lkc3RkYmxjbnNsb21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NzYxNzksImV4cCI6MjA4NjU1MjE3OX0.oC-qmnQtpPM5yYYPEQ6tBZoFK0O1lZJdMhYNhz_v_64';
+const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
+
+// Admin credentials
+const adminEmail = 'jsanemediah@gmail.com';
+const adminPassword = '@Jsane2026#!';
+
+// LOGIN
+async function login(){
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if(email === adminEmail && password === adminPassword){
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadPhotos();
+        loadVideos();
+        loadServices();
+        loadMessages();
+    } else {
+        document.getElementById('login-msg').innerText = 'Invalid credentials';
+    }
+}
+
+function logout(){
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('login-container').style.display = 'block';
+}
+
+// TABS
+function openTab(tabName, elm){
+    document.querySelectorAll('.tab').forEach(t=>t.style.display='none');
+    document.getElementById(tabName).style.display='block';
+    document.querySelectorAll('.tablink').forEach(b=>b.classList.remove('active'));
+    elm.classList.add('active');
+}
+
+// PHOTOS
+async function loadPhotos(){
+    const { data } = await supabase.from('photos').select('*');
+    const tbody = document.querySelector('#photo-table tbody');
+    tbody.innerHTML = '';
+    data.forEach(p=>{
+        tbody.innerHTML += `<tr>
+            <td><img src="${p.url}" class="thumb"></td>
+            <td>${p.category}</td>
+            <td><button class="delete-btn" onclick="deletePhoto('${p.id}')">Delete</button></td>
+        </tr>`;
+    });
+}
+
+async function uploadPhoto(){
+    const fileInput = document.getElementById('photo-upload');
+    if(fileInput.files.length === 0) return alert('Select a file');
+    const file = fileInput.files[0];
+    const fileName = `${Date.now()}_${file.name}`;
+    const { data, error } = await supabase.storage.from('portfolio').upload(fileName, file);
+    if(error) return alert(error.message);
+    const url = supabase.storage.from('portfolio').getPublicUrl(fileName).publicUrl;
+    await supabase.from('photos').insert([{ url, category: 'studio' }]);
+    loadPhotos();
+}
+
+// DELETE PHOTO
+async function deletePhoto(id){
+    await supabase.from('photos').delete().eq('id', id);
+    loadPhotos();
+}
+
+// VIDEOS
+async function loadVideos(){
+    const { data } = await supabase.from('videos').select('*');
+    const tbody = document.querySelector('#video-table tbody');
+    tbody.innerHTML = '';
+    data.forEach(v=>{
+        tbody.innerHTML += `<tr>
+            <td>${v.title}</td>
+            <td>${v.url}</td>
+            <td><button class="delete-btn" onclick="deleteVideo('${v.id}')">Delete</button></td>
+        </tr>`;
+    });
+}
+
+async function addVideo(){
+    const url = document.getElementById('video-url').value;
+    const title = document.getElementById('video-title').value;
+    if(!url || !title) return alert('Enter title and URL');
+    await supabase.from('videos').insert([{ url, title }]);
+    document.getElementById('video-url').value = '';
+    document.getElementById('video-title').value = '';
+    loadVideos();
+}
+
+async function deleteVideo(id){
+    await supabase.from('videos').delete().eq('id', id);
+    loadVideos();
+}
+
+// SERVICES
+async function loadServices(){
+    const { data } = await supabase.from('services').select('*');
+    const tbody = document.querySelector('#services-table tbody');
+    tbody.innerHTML = '';
+    data.forEach(s=>{
+        tbody.innerHTML += `<tr>
+            <td contenteditable="true" class="inline-edit" onblur="updateService('${s.id}','service',this.innerText)">${s.service}</td>
+            <td contenteditable="true" class="inline-edit" onblur="updateService('${s.id}','description',this.innerText)">${s.description}</td>
+            <td><button class="delete-btn" onclick="deleteService('${s.id}')">Delete</button></td>
+        </tr>`;
+    });
+}
+
+async function updateService(id, field, value){
+    await supabase.from('services').update({ [field]: value }).eq('id', id);
+}
+
+async function deleteService(id){
+    await supabase.from('services').delete().eq('id', id);
+    loadServices();
+}
+
+// MESSAGES
+async function loadMessages(){
+    const { data } = await supabase.from('messages').select('*');
+    const tbody = document.querySelector('#messages-table tbody');
+    tbody.innerHTML = '';
+    data.forEach(m=>{
+        tbody.innerHTML += `<tr>
+            <td>${m.name}</td>
+            <td>${m.email}</td>
+            <td>${m.message}</td>
+        </tr>`;
+    });
+}
+</script>
+
+</body>
+</html>
