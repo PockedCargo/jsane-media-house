@@ -31,7 +31,6 @@ gtag('config', 'G-FEV8PFXZC3');
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
-<!-- Styles -->
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:Inter, sans-serif; scroll-behavior:smooth; }
 body { background:#050505; color:#fff; overflow-x:hidden; }
@@ -195,7 +194,6 @@ footer { text-align:center; padding:40px; color:#777; }
     <div id="adminDashboard" style="display:none;">
         <h3>Welcome, Admin!</h3>
         <p>Use this panel to upload photos and update content.</p>
-        <!-- Additional admin features can be integrated here -->
     </div>
 </section>
 
@@ -210,6 +208,11 @@ footer { text-align:center; padding:40px; color:#777; }
 <footer>© 2026 Jsane Media House</footer>
 <a class="whatsapp" href="https://wa.me/254708751365" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+    <img id="lightboxImg" src="" alt="Preview">
+</div>
+
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
@@ -222,7 +225,7 @@ window.addEventListener("load",()=>{document.getElementById("loader").style.disp
 // Supabase Client
 const supabase = supabase.createClient(
   "https://gsixwwydstdblcnslomh.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXh3d3lkc3RkYmxjbnNsb21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NzYxNzksImV4cCI6MjA4NjU1MjE3OX0.oC-qmnQtpPM5yYYPEQ6tBZoFK0O1lZJdMhYNhz_v_64"
+  "YOUR_SUPABASE_KEY_HERE"
 );
 
 // Admin login
