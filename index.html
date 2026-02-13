@@ -2,91 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>JSANE MEDIA HOUSE</title>
+<title>JSANE MEDIA HOUSE | Photography & Videography</title>
+<meta name="description" content="Jsane Media House – Professional photography, videography, editing, livestreaming, digital marketing and IT services in Nairobi, Kenya.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
 <link rel="icon" href="favicon_io/Jfavicon.ico">
 
-<!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
-body{background:#050505;color:#fff;line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:#050505;color:white;overflow-x:hidden}
+
+/* INTRO LOGO */
+#intro{
+position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+background:black;z-index:5000;animation:introFade 2.5s forwards 2s}
+#intro img{width:180px;animation:logoZoom 2s ease}
+
+@keyframes introFade{to{opacity:0;visibility:hidden}}
+@keyframes logoZoom{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+canvas{position:fixed;inset:0;z-index:-1}
 
 /* NAV */
-nav{
-position:fixed;top:0;width:100%;display:flex;justify-content:space-between;
-align-items:center;padding:15px 40px;background:rgba(0,0,0,.7);
-backdrop-filter:blur(10px);z-index:999}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;
+align-items:center;padding:14px 40px;background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);z-index:1000}
 nav img{height:40px}
 nav a{color:#ccc;margin:0 12px;text-decoration:none}
 nav a:hover{color:#00ffff}
 
 /* HERO */
-.hero{
-height:90vh;display:flex;align-items:center;justify-content:center;
-flex-direction:column;text-align:center;
-background:radial-gradient(circle at top,#0a0a0a,#000);
-}
+.hero{height:90vh;display:flex;flex-direction:column;justify-content:center;
+align-items:center;text-align:center}
 .hero h1{font-size:60px}
 .hero p{color:#aaa;margin-top:10px}
-
-/* BUTTONS */
-.btn{
-display:inline-block;margin:15px;padding:12px 22px;
-border-radius:30px;background:#00ffff;color:#000;
-text-decoration:none;font-weight:600
-}
+.btn{margin-top:20px;padding:12px 24px;border-radius:30px;
+background:#00ffff;color:black;text-decoration:none;font-weight:600}
 
 /* SECTIONS */
 section{padding:100px 40px;max-width:1200px;margin:auto}
 h2{text-align:center;margin-bottom:40px;color:#00ffff}
 
 /* SERVICES */
-.services{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px}
-.card{
-background:#111;padding:25px;border-radius:16px;
-border:1px solid #222;transition:.3s}
-.card:hover{border-color:#00ffff;transform:translateY(-5px)}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#111;padding:25px;border-radius:16px;border:1px solid #222;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:#00ffff}
 
 /* PHOTOS */
-.grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
 .grid img{width:100%;border-radius:12px}
 
 /* VIDEOS */
-.video-grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 iframe{width:100%;height:250px;border-radius:12px}
 
 /* CONTACT */
-.contact-buttons{
-display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.contact-buttons a{
-background:#111;padding:12px 18px;border-radius:30px;
-color:white;text-decoration:none;display:flex;
-align-items:center;gap:10px;border:1px solid #333}
+.contact-buttons{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.contact-buttons a{background:#111;padding:12px 18px;border-radius:30px;
+color:white;text-decoration:none;display:flex;align-items:center;gap:10px;border:1px solid #333}
 .contact-buttons a:hover{border-color:#00ffff}
 
 /* FOOTER */
 footer{text-align:center;padding:40px;color:#777}
 
-/* WHATSAPP FLOAT */
-.whatsapp{
-position:fixed;bottom:20px;right:20px;
+/* FLOATING WHATSAPP */
+.whatsapp{position:fixed;bottom:20px;right:20px;
 background:#25D366;padding:16px;border-radius:50%;
 font-size:26px;color:white;z-index:999}
 </style>
 </head>
 
 <body>
+
+<div id="intro">
+<img src="logo.png" alt="Jsane Logo">
+</div>
+
+<canvas id="particles"></canvas>
 
 <nav>
 <img src="logo.png">
@@ -160,6 +155,31 @@ font-size:26px;color:white;z-index:999}
 <a class="whatsapp" href="https://wa.me/254708751365" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
+
+<script>
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+let w,h,particles=[];
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight}
+window.onresize=resize;resize();
+
+for(let i=0;i<100;i++){
+particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.4,dy:(Math.random()-0.5)*0.4});
+}
+function animate(){
+ctx.clearRect(0,0,w,h);
+particles.forEach(p=>{
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="rgba(0,255,255,0.3)";
+ctx.fill();
+p.x+=p.dx;p.y+=p.dy;
+if(p.x>w)p.x=0;if(p.x<0)p.x=w;
+if(p.y>h)p.y=0;if(p.y<0)p.y=h;
+});
+requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
