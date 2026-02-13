@@ -5,16 +5,7 @@
 <title>Jsane Media House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="favicon_io/Jfavicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
-<link rel="manifest" href="favicon_io/site.webmanifest">
-
-<!-- Google Analytics (GA4) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEV8PFXZC3"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -23,253 +14,124 @@ gtag('js', new Date());
 gtag('config', 'G-FEV8PFXZC3');
 </script>
 
-<!-- Fonts & Icons -->
+<!-- SEO -->
+<meta name="description" content="Jsane Media House - Photography, Videography, Digital Marketing & IT Solutions in Nairobi, Kenya.">
+<meta name="keywords" content="Photography Nairobi, Videography Kenya, Media House Nairobi, Digital Marketing Kenya">
+<meta name="author" content="Jsane Media House">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon_io/Jfavicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Slick Carousel -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
-<!-- Styles -->
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:Inter, sans-serif; scroll-behavior:smooth; }
-body { background:#050505; color:#fff; overflow-x:hidden; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:#050505;color:#fff}
 
-/* Loader */
-#loader { position:fixed; inset:0; background:#050505; display:flex; justify-content:center; align-items:center; z-index:3000; }
-#loader div { width:50px; height:50px; border:5px solid #00ffff; border-top:5px solid #050505; border-radius:50%; animation: spin 1s linear infinite; }
-@keyframes spin { 0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
+nav{position:fixed;top:0;width:100%;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);z-index:999}
+nav img{height:40px}
+nav a{color:#ccc;text-decoration:none;margin:0 12px}
+nav a:hover{color:#00ffff}
 
-/* NAV */
-nav { position:fixed; top:0; width:100%; padding:14px 40px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,.6); backdrop-filter:blur(10px); z-index:999; }
-nav img { height:40px; }
-nav a { color:#ccc; text-decoration:none; margin:0 12px; font-size:14px; }
-nav a:hover { color:#00ffff; }
+.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-top:80px}
+.hero h1{font-size:64px}
+.hero p{color:#ccc;margin-top:10px}
 
-/* HERO */
-.hero { position:relative; height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden; }
-.hero h1 { font-size:70px; font-weight:800; z-index:2; position:relative; }
-.hero p { color:#ccc; margin-top:10px; z-index:2; position:relative; }
+section{padding:120px 40px;max-width:1200px;margin:auto}
+h2{text-align:center;margin-bottom:40px;color:#00ffff}
 
-/* Particle Canvas */
-#particleCanvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:#111;padding:24px;border-radius:16px}
 
-/* Gradient Animation */
-.hero::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg,#000,#0a0a0a,#000); opacity:0.6; animation: gradientShift 15s ease infinite; z-index:0; }
-@keyframes gradientShift { 0%{background:linear-gradient(120deg,#000,#0a0a0a,#000);} 50%{background:linear-gradient(120deg,#050505,#0a0a0a,#050505);} 100%{background:linear-gradient(120deg,#000,#0a0a0a,#000);} }
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.grid img{width:100%;border-radius:12px}
 
-/* SECTIONS */
-section { padding:120px 40px; max-width:1200px; margin:auto; }
-h2 { text-align:center; margin-bottom:40px; color:#00ffff; }
+iframe{border-radius:12px}
 
-/* SERVICES */
-.services { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-.card { background:#111; padding:24px; border-radius:16px; border:1px solid #222; transition:.3s; }
-.card:hover { transform:translateY(-8px); border-color:#00ffff; }
+footer{text-align:center;padding:40px;color:#777}
 
-/* PHOTO PORTFOLIO */
-.filter { display:flex; justify-content:center; gap:10px; margin-bottom:20px; }
-.filter button { background:#111; border:none; color:#ccc; padding:8px 14px; border-radius:8px; cursor:pointer; }
-.filter button:hover { background:#00ffff; color:#000; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
-.grid img { width:100%; height:auto; border-radius:12px; cursor:pointer; object-fit:cover; }
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:16px;border-radius:50%;font-size:26px;color:white}
 
-/* LIGHTBOX */
-#lightbox { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; justify-content:center; align-items:center; z-index:2000; }
-#lightbox img { max-width:90%; max-height:90%; cursor:pointer; }
-
-/* VIDEOS */
-.youtube-grid iframe, .youtube-grid video { width:100%; height:200px; border-radius:12px; margin-bottom:10px; }
-@media(min-width:768px){ .youtube-grid iframe, .youtube-grid video { height:300px; } }
-
-/* SOCIAL ICONS */
-.socials { display:flex; justify-content:center; gap:12px; margin-top:20px; }
-.socials a { display:inline-block; width:36px; height:36px; color:white; font-size:18px; border-radius:8px; background:#111; display:flex; justify-content:center; align-items:center; transition:.3s; }
-.socials a:hover { background:#00ffff; color:#000; }
-
-/* FOOTER */
-footer { text-align:center; padding:40px; color:#777; }
-
-/* WHATSAPP */
-.whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; padding:16px; border-radius:50%; font-size:26px; color:white; cursor:pointer; }
-
-/* ADMIN */
-#adminLogin input { width:100%; padding:8px; margin:5px 0; border-radius:6px; border:none; }
-#adminLogin button { padding:10px 20px; background:#00ffff; border:none; color:#000; border-radius:6px; cursor:pointer; margin-top:10px; }
+.socials a{font-size:22px;margin:0 10px;color:#00ffff}
+button{padding:12px 24px;border:none;border-radius:20px;background:#00ffff;color:black;font-weight:bold;cursor:pointer}
 </style>
 </head>
 
 <body>
-<!-- Loader -->
-<div id="loader"><div></div></div>
 
-<!-- NAV -->
 <nav>
-    <img src="logo.png" alt="Jsane Media House Logo">
-    <div>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Photos</a>
-        <a href="#videos">Videos</a>
-        <a href="#contact">Contact</a>
-        <a href="#admin">Admin</a>
-    </div>
+<img src="logo.png">
+<div>
+<a href="#services">Services</a>
+<a href="#portfolio">Photos</a>
+<a href="#videos">Videos</a>
+<a href="#booking">Booking</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-    <canvas id="particleCanvas"></canvas>
-    <div>
-        <h1>Jsane Media House</h1>
-        <p>Photography • Videography • Digital • IT Solutions</p>
-    </div>
+<div>
+<h1>Jsane Media House</h1>
+<p>Photography • Videography • Digital • IT Solutions</p>
+<br>
+<a href="https://share.google/luq9Ta9ouzvQ9YTzi" target="_blank">
+<button>⭐ View Google Reviews</button>
+</a>
+</div>
 </div>
 
-<!-- SERVICES -->
 <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-        <div class="card"><h3>Photography</h3><p>Professional studio & event photography.</p></div>
-        <div class="card"><h3>Videography</h3><p>Cinematic storytelling and reels.</p></div>
-        <div class="card"><h3>Digital Marketing</h3><p>Social media & brand strategy.</p></div>
-        <div class="card"><h3>IT Solutions</h3><p>Websites & digital systems.</p></div>
-    </div>
-</section>
-
-<!-- PHOTO PORTFOLIO -->
-<section id="portfolio">
-    <h2>Photography Portfolio</h2>
-    <div class="filter">
-        <button onclick="showCategory('all')">All</button>
-        <button onclick="showCategory('studio')">Studio</button>
-        <button onclick="showCategory('embassy')">Embassy</button>
-        <button onclick="showCategory('events')">Events</button>
-    </div>
-    <div class="grid" id="photoGrid">
-        <img src="Photos/718A0334.webp" data-cat="studio">
-        <img src="Photos/IHP_1322.webp" data-cat="studio">
-        <img src="Photos/IMG_0059.webp" data-cat="embassy">
-        <img src="Photos/IMG_0061.webp" data-cat="embassy">
-        <img src="Photos/IMG_0268.webp" data-cat="events">
-        <img src="Photos/IMG_0328.webp" data-cat="events">
-        <img src="Photos/IMG_0458-1.webp" data-cat="events">
-        <img src="Photos/Nhif_1_1.webp" data-cat="events">
-    </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox"><img id="lightboxImg" src="" onclick="closeLightbox()"></div>
-
-<!-- VIDEOS -->
-<section id="videos">
-    <h2>Videography Projects</h2>
-    <div class="youtube-grid">
-        <iframe src="https://www.youtube.com/embed/emv3XXILQJk" title="Video 1" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/TpP-SVttyC8" title="Video 2" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/64epsUWH9_Q" title="Video 3" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/8STPff_x9P4" title="Video 4" frameborder="0" allowfullscreen></iframe>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-    <h2>Contact & Booking</h2>
-    <p style="text-align:center">WhatsApp: +254708751365</p>
-    <form id="contactForm" style="max-width:500px;margin:auto;text-align:left;">
-        <label>Name</label><input type="text" name="name" required>
-        <label>Email</label><input type="email" name="email" required>
-        <label>Message</label><textarea name="message" required></textarea>
-        <button type="submit">Send</button>
-    </form>
-</section>
-
-<!-- BOOKING -->
-<section id="booking">
-    <h2>Book a Session</h2>
-    <iframe src="https://calendly.com/jsanemediah/30min" width="100%" height="700" frameborder="0"></iframe>
-</section>
-
-<!-- ADMIN -->
-<section id="admin">
-    <h2>Admin Panel</h2>
-    <div id="adminLogin" style="max-width:400px;margin:auto;text-align:center;">
-        <input type="email" id="adminEmail" placeholder="Email" value="jsanemediah@gmail.com">
-        <input type="password" id="adminPassword" placeholder="Password" value="@Jsane2026#!">
-        <button onclick="loginAdmin()">Login</button>
-    </div>
-    <div id="adminDashboard" style="display:none;text-align:center;">
-        <h3>Welcome, Admin!</h3>
-        <p>Future content management coming soon.</p>
-    </div>
-</section>
-
-<!-- SOCIALS -->
-<div class="socials">
-    <a href="https://www.instagram.com/jsane_media_house/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/jsanephotography/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.linkedin.com/in/jimnah-kabiria-/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://www.youtube.com/@jsanemediahouse4751" target="_blank"><i class="fab fa-youtube"></i></a>
+<h2>Our Services</h2>
+<div class="services">
+<div class="card">Photography</div>
+<div class="card">Videography</div>
+<div class="card">Digital Marketing</div>
+<div class="card">IT Solutions</div>
 </div>
+</section>
+
+<section id="portfolio">
+<h2>Portfolio</h2>
+<div class="grid">
+<img src="Photos/718A0334.webp">
+<img src="Photos/IHP_1322.webp">
+<img src="Photos/IMG_0059.webp">
+<img src="Photos/IMG_0061.webp">
+</div>
+</section>
+
+<section id="videos">
+<h2>Videos</h2>
+<iframe width="100%" height="360" src="https://www.youtube-nocookie.com/embed/emv3XXILQJk" allowfullscreen></iframe>
+<br><br>
+<iframe width="100%" height="360" src="https://www.youtube-nocookie.com/embed/TpP-SVttyC8" allowfullscreen></iframe>
+</section>
+
+<section id="booking">
+<h2>Book a Session</h2>
+<iframe src="https://calendly.com/jsanemediah/30min?embed_domain=jsane-media-house.vercel.app&embed_type=Inline" width="100%" height="600"></iframe>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: jsanemediah@gmail.com</p>
+<div class="socials">
+<a href="https://www.instagram.com/jsane_media_house/" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.facebook.com/jsanephotography/" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="https://www.linkedin.com/in/jimnah-kabiria-/" target="_blank"><i class="fab fa-linkedin"></i></a>
+<a href="https://www.youtube.com/@jsanemediahouse4751" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+</section>
 
 <footer>© 2026 Jsane Media House</footer>
 <a class="whatsapp" href="https://wa.me/254708751365" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-
-<script>
-// Loader
-window.addEventListener("load",()=>{document.getElementById("loader").style.display="none";});
-
-// Admin login
-function loginAdmin(){
-    const email = document.getElementById("adminEmail").value;
-    const password = document.getElementById("adminPassword").value;
-    if(email==="jsanemediah@gmail.com" && password==="@Jsane2026#!"){
-        document.getElementById("adminLogin").style.display="none";
-        document.getElementById("adminDashboard").style.display="block";
-        alert("Welcome, Admin!");
-    } else alert("Invalid credentials");
-}
-
-// Photo filter + lightbox
-function showCategory(cat){
-    document.querySelectorAll('#photoGrid img').forEach(img=>{
-        img.style.display = (cat==="all" || img.dataset.cat===cat) ? "block" : "none";
-    });
-}
-document.querySelectorAll('#photoGrid img').forEach(img=>{
-    img.onclick = ()=>{ 
-        document.getElementById('lightbox').style.display="flex";
-        document.getElementById('lightboxImg').src = img.src;
-    }
-});
-function closeLightbox(){ document.getElementById('lightbox').style.display="none"; }
-
-// Video slider
-$(document).ready(()=>{
-    $('.youtube-grid').slick({slidesToShow:1,slidesToScroll:1,infinite:true,arrows:true,dots:true});
-});
-
-// Particle background
-const canvas=document.getElementById('particleCanvas');
-const ctx=canvas.getContext('2d'); let w,h,particles=[];
-function initParticles(){ w=canvas.width=canvas.offsetWidth; h=canvas.height=canvas.offsetHeight; particles=[]; for(let i=0;i<100;i++){particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}}
-function animateParticles(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,255,255,0.3)';ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x>w)p.x=0; if(p.x<0)p.x=w; if(p.y>h)p.y=0; if(p.y<0)p.y=h; }); requestAnimationFrame(animateParticles);}
-window.addEventListener('resize',initParticles); initParticles(); animateParticles();
-window.addEventListener('scroll',()=>{document.querySelector('.hero').style.opacity = 1 - window.scrollY / 400;});
-
-// EmailJS
-emailjs.init("rvlCj7Do8dIWWhxib");
-document.getElementById('contactForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    emailjs.sendForm('service_c1xmy9k','template_jvhwki7',this)
-        .then(()=>{alert('Message sent!'); this.reset();})
-        .catch(err=>{alert('Error: '+err);});
-});
-</script>
 </body>
 </html>
