@@ -6,101 +6,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0a0a0a;color:white;overflow-x:hidden}
+body {
+margin:0;
+font-family:Arial, sans-serif;
+background:#0a0a0a;
+color:white;
+overflow-x:hidden;
+}
 
-/* INTRO LOGO */
-#intro{
-position:fixed;inset:0;background:black;
-display:flex;align-items:center;justify-content:center;
-z-index:9999;animation:fadeOut 3s forwards 2s}
-#intro img{width:200px;animation:zoom 2s}
+#particles-js {
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
 
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
-@keyframes zoom{from{transform:scale(0.5)}to{transform:scale(1)}}
+#intro {
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+animation:fadeOut 2s forwards 2s;
+}
+#intro img {
+width:200px;
+animation:zoomIn 2s;
+}
+@keyframes zoomIn {from{transform:scale(0);}to{transform:scale(1);}}
+@keyframes fadeOut {to{opacity:0;visibility:hidden;}}
 
-/* PARTICLES */
-canvas{position:fixed;top:0;left:0;z-index:-1}
+header {
+text-align:center;
+padding:80px 20px;
+}
+h1 {font-size:3em;}
 
-/* HEADER */
-header{text-align:center;padding:80px 20px}
-h1{font-size:3rem;letter-spacing:3px}
-.subtitle{color:#aaa;margin-top:10px}
-
-/* SERVICES */
-.services{
+.services {
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
-padding:40px}
-.service{
-background:#111;padding:25px;border-radius:15px;text-align:center;
-transition:.3s}
-.service i{font-size:2rem;margin-bottom:10px;color:#0ff}
-.service:hover{transform:scale(1.05);background:#1a1a1a}
+padding:40px;
+}
+.service {
+background:#111;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
 
-/* GALLERY */
-.slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
-.slider img{
-width:300px;height:200px;object-fit:cover;margin:10px;border-radius:10px;
-scroll-snap-align:center}
+.videos {
+display:flex;
+overflow-x:auto;
+gap:20px;
+padding:20px;
+}
+.videos iframe {
+min-width:320px;
+height:200px;
+border-radius:10px;
+}
 
-/* VIDEOS */
-.videos{display:flex;overflow-x:auto}
-iframe{width:350px;height:200px;margin:10px;border-radius:12px}
+.gallery {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:30px;
+}
+.gallery img {
+width:100%;
+border-radius:10px;
+}
 
-/* CONTACT */
-.contact{padding:40px;text-align:center}
-.buttons a{
-display:inline-flex;align-items:center;gap:10px;
-padding:15px 20px;margin:10px;border-radius:30px;
-text-decoration:none;color:white;font-size:1rem}
-.call{background:#28a745}
-.email{background:#007bff}
-.book{background:#ff9800}
+.contacts {
+display:flex;
+justify-content:center;
+gap:20px;
+padding:30px;
+}
+.contacts a {
+padding:15px 20px;
+border-radius:50px;
+background:#1a1a1a;
+color:white;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:10px;
+}
 
-/* WHATSAPP FLOAT */
-.whatsapp{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;color:white;padding:15px;
-border-radius:50%;font-size:1.8rem;z-index:999}
+#whatsapp {
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:25px;
+}
 
-/* FOOTER */
-footer{text-align:center;padding:20px;color:#777}
+footer {
+text-align:center;
+padding:20px;
+background:#000;
+}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-<img src="logo.png" alt="JSANE LOGO">
-</div>
+<div id="particles-js"></div>
 
-<canvas id="particles"></canvas>
+<div id="intro">
+<img src="logo.png">
+</div>
 
 <header>
 <h1>JSANE MEDIA HOUSE</h1>
-<p class="subtitle">Photography | Videography | Editing</p>
+<p>Photography | Videography | Editing</p>
+<a href="https://calendly.com/jsanemediah/30min" style="color:#0f0;">Book a Session</a>
 </header>
 
-<!-- SERVICES -->
 <section class="services">
-<div class="service"><i class="fas fa-camera"></i><h3>Photography</h3></div>
-<div class="service"><i class="fas fa-video"></i><h3>Videography</h3></div>
-<div class="service"><i class="fas fa-calendar"></i><h3>Event Coverage</h3></div>
-<div class="service"><i class="fas fa-music"></i><h3>Music Videos</h3></div>
-<div class="service"><i class="fas fa-cut"></i><h3>Editing</h3></div>
-<div class="service"><i class="fas fa-broadcast-tower"></i><h3>Livestreaming</h3></div>
-<div class="service"><i class="fas fa-bullhorn"></i><h3>Digital Marketing</h3></div>
-<div class="service"><i class="fas fa-laptop"></i><h3>IT Services</h3></div>
+<div class="service">📸 Photography</div>
+<div class="service">🎥 Videography</div>
+<div class="service">🎤 Event Coverage</div>
+<div class="service">🎬 Music Videos</div>
+<div class="service">✂ Editing</div>
+<div class="service">📡 Livestreaming</div>
+<div class="service">💻 Digital Marketing</div>
+<div class="service">🖥 IT Services</div>
 </section>
 
-<!-- GALLERY -->
-<h2 style="text-align:center">Our Work</h2>
-<div class="slider">
+<h2 style="text-align:center;">Watch Our Work</h2>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/64epsUWH9_Q" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/8STPff_x9P4" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/emv3XXILQJk" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/TpP-SVttyC8" allowfullscreen></iframe>
+</div>
+
+<h2 style="text-align:center;">Gallery</h2>
+<div class="gallery">
 <img src="Photos/718A0334.webp">
 <img src="Photos/IHP_1322.webp">
 <img src="Photos/IMG_0059.webp">
@@ -111,60 +164,28 @@ footer{text-align:center;padding:20px;color:#777}
 <img src="Photos/Nhif_1_1.webp">
 </div>
 
-<!-- VIDEOS -->
-<h2 style="text-align:center">Watch Our Work</h2>
-<div class="videos">
-<iframe src="https://www.youtube.com/embed/emv3XXILQJk" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/TpP-SVttyC8" allowfullscreen></iframe>
+<div class="contacts">
+<a href="tel:+254708751365"><i class="fa fa-phone"></i> Call</a>
+<a href="mailto:jsanemediah@gmail.com"><i class="fa fa-envelope"></i> Email</a>
+<a href="https://www.facebook.com/jsanephotography/"><i class="fab fa-facebook"></i></a>
+<a href="https://www.instagram.com/jsane_media_house/"><i class="fab fa-instagram"></i></a>
+<a href="https://www.youtube.com/@jsanemediahouse4751"><i class="fab fa-youtube"></i></a>
 </div>
 
-<!-- CONTACT -->
-<section class="contact">
-<h2>Contact Us</h2>
-<div class="buttons">
-<a class="call" href="tel:+254708751365"><i class="fas fa-phone"></i> Call</a>
-<a class="email" href="mailto:jsanemediah@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-<a class="book" href="https://calendly.com/jsanemediah/30min" target="_blank"><i class="fas fa-calendar-check"></i> Book Session</a>
-</div>
-<p>📍 Nairobi, Kenya</p>
-</section>
-
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/254708751365" target="_blank">
+<a id="whatsapp" href="https://wa.me/254708751365">
 <i class="fab fa-whatsapp"></i>
 </a>
 
 <footer>
-<p>© 2026 JSANE MEDIA HOUSE</p>
+<p>Kenya, Nairobi</p>
+<p>JSANE MEDIA HOUSE © 2026</p>
 </footer>
 
 <script>
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let particles=[];
-for(let i=0;i<100;i++){
-particles.push({x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2+1,
-dx:(Math.random()-0.5)*0.5,
-dy:(Math.random()-0.5)*0.5});
-}
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="white";
-ctx.fill();
-p.x+=p.dx;p.y+=p.dy;
-if(p.x<0||p.x>canvas.width)p.dx*=-1;
-if(p.y<0||p.y>canvas.height)p.dy*=-1;
+particlesJS("particles-js",{
+particles:{number:{value:80},color:{value:"#ffffff"},shape:{type:"circle"},
+opacity:{value:0.5},size:{value:3},move:{speed:2}}
 });
-requestAnimationFrame(animate);
-}
-animate();
 </script>
 
 </body>
