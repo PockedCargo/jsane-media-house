@@ -3,18 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>JSANE MEDIA HOUSE</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="logo.png">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Particles -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
 body {
 margin:0;
-font-family:Arial, sans-serif;
+font-family: Arial, sans-serif;
 background:#0a0a0a;
 color:white;
-overflow-x:hidden;
+text-align:center;
 }
 
 #particles-js {
@@ -24,83 +31,51 @@ height:100%;
 z-index:-1;
 }
 
-#intro {
-position:fixed;
-inset:0;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999;
-animation:fadeOut 2s forwards 2s;
-}
-#intro img {
-width:200px;
-animation:zoomIn 2s;
-}
-@keyframes zoomIn {from{transform:scale(0);}to{transform:scale(1);}}
-@keyframes fadeOut {to{opacity:0;visibility:hidden;}}
-
 header {
-text-align:center;
-padding:80px 20px;
-}
-h1 {font-size:3em;}
-
-.services {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-padding:40px;
-}
-.service {
-background:#111;
-padding:20px;
-border-radius:10px;
-text-align:center;
-}
-
-.videos {
 display:flex;
-overflow-x:auto;
-gap:20px;
-padding:20px;
+align-items:center;
+padding:15px 20px;
 }
-.videos iframe {
-min-width:320px;
-height:200px;
-border-radius:10px;
+
+header img {
+height:55px;
+margin-right:12px;
+}
+
+h1 span {
+color:#00ffd5;
+}
+
+section {
+padding:50px 20px;
 }
 
 .gallery {
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:15px;
-padding:30px;
+padding:20px;
 }
+
 .gallery img {
 width:100%;
 border-radius:10px;
 }
 
-.contacts {
-display:flex;
-justify-content:center;
-gap:20px;
-padding:30px;
-}
-.contacts a {
-padding:15px 20px;
-border-radius:50px;
-background:#1a1a1a;
-color:white;
-text-decoration:none;
-display:flex;
-align-items:center;
-gap:10px;
+.videos iframe {
+width:320px;
+height:180px;
+margin:10px;
+border-radius:10px;
 }
 
-#whatsapp {
+.socials a {
+color:white;
+font-size:26px;
+margin:12px;
+}
+
+.whatsapp {
 position:fixed;
 bottom:20px;
 right:20px;
@@ -108,13 +83,8 @@ background:#25D366;
 color:white;
 padding:15px;
 border-radius:50%;
-font-size:25px;
-}
-
-footer {
-text-align:center;
-padding:20px;
-background:#000;
+font-size:28px;
+z-index:999;
 }
 </style>
 </head>
@@ -123,36 +93,26 @@ background:#000;
 
 <div id="particles-js"></div>
 
-<div id="intro">
-<img src="logo.png">
-</div>
-
 <header>
-<h1>JSANE MEDIA HOUSE</h1>
-<p>Photography | Videography | Editing</p>
-<a href="https://calendly.com/jsanemediah/30min" style="color:#0f0;">Book a Session</a>
+<img src="logo.png" alt="JSANE Logo">
+<h1><span>JSANE</span> MEDIA HOUSE</h1>
 </header>
 
-<section class="services">
-<div class="service">📸 Photography</div>
-<div class="service">🎥 Videography</div>
-<div class="service">🎤 Event Coverage</div>
-<div class="service">🎬 Music Videos</div>
-<div class="service">✂ Editing</div>
-<div class="service">📡 Livestreaming</div>
-<div class="service">💻 Digital Marketing</div>
-<div class="service">🖥 IT Services</div>
+<section>
+<h2>Photography | Videography | Editing | Livestreaming</h2>
+<p>Digital Marketing & IT Services</p>
 </section>
 
-<h2 style="text-align:center;">Watch Our Work</h2>
+<section>
+<h2>Watch Our Work</h2>
 <div class="videos">
-<iframe src="https://www.youtube.com/embed/64epsUWH9_Q" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/8STPff_x9P4" allowfullscreen></iframe>
 <iframe src="https://www.youtube.com/embed/emv3XXILQJk" allowfullscreen></iframe>
 <iframe src="https://www.youtube.com/embed/TpP-SVttyC8" allowfullscreen></iframe>
 </div>
+</section>
 
-<h2 style="text-align:center;">Gallery</h2>
+<section>
+<h2>Our Gallery</h2>
 <div class="gallery">
 <img src="Photos/718A0334.webp">
 <img src="Photos/IHP_1322.webp">
@@ -163,28 +123,44 @@ background:#000;
 <img src="Photos/IMG_0458-1.webp">
 <img src="Photos/Nhif_1_1.webp">
 </div>
+</section>
 
-<div class="contacts">
-<a href="tel:+254708751365"><i class="fa fa-phone"></i> Call</a>
-<a href="mailto:jsanemediah@gmail.com"><i class="fa fa-envelope"></i> Email</a>
-<a href="https://www.facebook.com/jsanephotography/"><i class="fab fa-facebook"></i></a>
-<a href="https://www.instagram.com/jsane_media_house/"><i class="fab fa-instagram"></i></a>
-<a href="https://www.youtube.com/@jsanemediahouse4751"><i class="fab fa-youtube"></i></a>
+<section>
+<h2>Book a Session</h2>
+<iframe src="https://calendly.com/jsanemediah/30min" width="100%" height="600" frameborder="0"></iframe>
+</section>
+
+<section>
+<h2>Google Reviews</h2>
+<p>★★★★★ 5.0 (Google Business)</p>
+</section>
+
+<section>
+<h2>Contact Us</h2>
+<p>Email: jsanemediah@gmail.com</p>
+<p>Phone / WhatsApp: +254708751365</p>
+
+<div class="socials">
+<a href="https://www.facebook.com/jsanephotography/" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="https://www.instagram.com/jsane_media_house/" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.youtube.com/@jsanemediahouse4751" target="_blank"><i class="fab fa-youtube"></i></a>
 </div>
+</section>
 
-<a id="whatsapp" href="https://wa.me/254708751365">
+<a class="whatsapp" href="https://wa.me/254708751365" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
 
-<footer>
-<p>Kenya, Nairobi</p>
-<p>JSANE MEDIA HOUSE © 2026</p>
-</footer>
-
 <script>
-particlesJS("particles-js",{
-particles:{number:{value:80},color:{value:"#ffffff"},shape:{type:"circle"},
-opacity:{value:0.5},size:{value:3},move:{speed:2}}
+particlesJS("particles-js", {
+"particles":{
+"number":{"value":80},
+"color":{"value":"#ffffff"},
+"shape":{"type":"circle"},
+"opacity":{"value":0.5},
+"size":{"value":3},
+"move":{"speed":1}
+}
 });
 </script>
 
