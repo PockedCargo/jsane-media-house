@@ -194,15 +194,15 @@ nav .nav-cta:hover { background: var(--red-light); }
   position: relative; background: var(--dark3);
   border: 1px solid var(--border); overflow: hidden;
 }
-.video-wrap video {
+.video-wrap iframe {
   width: 100%; display: block;
-  aspect-ratio: 16/9; object-fit: cover;
+  aspect-ratio: 16/9; border: none;
 }
 .video-label {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 12px 16px;
-  background: linear-gradient(transparent, rgba(0,0,0,.7));
+  padding: 10px 16px;
+  background: var(--dark3);
   font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  display: block;
 }
 
 /* ── ABOUT STRIP ── */
@@ -297,17 +297,6 @@ footer p { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
 }
 .marquee-inner span em { font-style: italic; color: var(--red); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ── VIDEO PLACEHOLDERS ── */
-.video-placeholder { cursor: default; }
-.video-thumb {
-  aspect-ratio: 16/9; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 10px;
-  background: var(--dark3);
-}
-.video-thumb i { font-size: 40px; color: var(--red); opacity: .6; }
-.video-thumb span { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--off-white); }
-.video-thumb small { font-size: 11px; color: var(--muted); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1000px) {
@@ -474,20 +463,26 @@ footer p { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
 <section class="section" id="videos">
   <span class="section-label">Motion Work</span>
   <h2 class="section-title">Videography <em>Reels</em></h2>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:28px;max-width:500px;line-height:1.7;">Share your YouTube or Vimeo links and they'll be embedded here — faster loading, no GitHub size limits.</p>
   <div class="video-grid">
-    <div class="video-wrap video-placeholder">
-      <div class="video-thumb"><i class="fas fa-play-circle"></i><span>Reel 01</span><small>YouTube/Vimeo embed pending</small></div>
-      <!-- REPLACE THIS DIV WITH: <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen style="width:100%;aspect-ratio:16/9;display:block"></iframe> -->
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/emv3XXILQJk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <span class="video-label">Reel 01</span>
     </div>
-    <div class="video-wrap video-placeholder">
-      <div class="video-thumb"><i class="fas fa-play-circle"></i><span>Reel 02</span><small>YouTube/Vimeo embed pending</small></div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/TpP-SVttyC8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <span class="video-label">Reel 02</span>
     </div>
-    <div class="video-wrap video-placeholder">
-      <div class="video-thumb"><i class="fas fa-play-circle"></i><span>Instagram Edit</span><small>YouTube/Vimeo embed pending</small></div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/64epsUWH9_Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <span class="video-label">Instagram Edit</span>
     </div>
-    <div class="video-wrap video-placeholder">
-      <div class="video-thumb"><i class="fas fa-play-circle"></i><span>Brand Film</span><small>YouTube/Vimeo embed pending</small></div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/ZO2snY0rtMQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <span class="video-label">Brand Film</span>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/UjRZ235YHyE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <span class="video-label">Reel 05</span>
     </div>
   </div>
 </section>
