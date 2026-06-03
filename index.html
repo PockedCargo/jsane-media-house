@@ -522,7 +522,7 @@ footer p { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
       </select>
       <label>Message</label>
       <textarea placeholder="Tell us about your project or event..."></textarea>
-      <button class="btn-submit" onclick="handleSubmit()">Send Message →</button>
+      <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">Send Message →</button>
     </div>
   </div>
 </section>
@@ -576,12 +576,47 @@ function closeLightbox() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-// Contact form
-function handleSubmit() {
-  const btn = document.querySelector('.btn-submit');
-  btn.textContent = 'Message Sent ✓';
-  btn.style.background = '#1a7a3c';
-  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+// Contact form — Formspree
+async function handleSubmit() {
+  const btn = document.getElementById('submitBtn');
+  const name = document.querySelector('input[placeholder="Your name"]').value.trim();
+  const contact = document.querySelector('input[placeholder="How to reach you"]').value.trim();
+  const service = document.querySelector('select').value;
+  const message = document.querySelector('textarea').value.trim();
+
+  if (!name || !contact || !message) {
+    btn.textContent = 'Please fill all fields';
+    btn.style.background = '#7a3a2a';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 2500);
+    return;
+  }
+
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xwvjkvyv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, contact, service, message })
+    });
+
+    if (res.ok) {
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#1a7a3c';
+      document.querySelector('input[placeholder="Your name"]').value = '';
+      document.querySelector('input[placeholder="How to reach you"]').value = '';
+      document.querySelector('textarea').value = '';
+    } else {
+      throw new Error('Failed');
+    }
+  } catch {
+    btn.textContent = 'Failed — try WhatsApp';
+    btn.style.background = '#7a3a2a';
+  }
+
+  btn.disabled = false;
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 4000);
 }
 </script>
 </body>
