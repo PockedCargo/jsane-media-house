@@ -165,12 +165,12 @@ footer a { color: var(--red); text-decoration: none; }
       <input
         type="text"
         id="cert-input"
-        placeholder="e.g. JMH-2025-PHO-0041"
+        placeholder="e.g. 2020-024"
         onkeydown="if(event.key==='Enter') verifyCert()"
       >
       <button class="btn-verify" onclick="verifyCert()">Verify &nbsp;<i class="fas fa-search"></i></button>
     </div>
-    <p class="hint">The certificate number is printed at the top right of the document. Try <a href="#" onclick="document.getElementById('cert-input').value='JMH-2025-PHO-0041'; verifyCert(); return false;">JMH-2025-PHO-0041</a> as a demo.</p>
+    <p class="hint">The certificate number is printed at the top right of the document. Try <a href="#" onclick="document.getElementById('cert-input').value='2020-024'; verifyCert(); return false;">2020-024</a> as a demo.</p>
   </div>
 
   <div id="result"></div>
@@ -183,7 +183,7 @@ footer a { color: var(--red); text-decoration: none; }
         <div class="step-num">01</div>
         <div class="step-text">
           <h4>Locate the certificate number</h4>
-          <p>Find the unique certificate ID printed at the top right corner of the issued document (format: JMH-YYYY-XXX-NNNN).</p>
+          <p>Find the certificate number printed at the bottom left of the issued document (format: YYYY-NNN).</p>
         </div>
       </div>
       <div class="step">
@@ -211,17 +211,27 @@ footer a { color: var(--red); text-decoration: none; }
 <script>
 // Certificate database — add more entries here as you issue certificates
 const CERTIFICATES = {
-  'JMH-2025-PHO-0041': {
+  '2020-024': {
     name: "Kelly Ayodi Lung'aho",
-    course: 'Professional Photography',
-    issued: 'June 2025',
-    duration: '3 Months',
+    course: 'Professional Photography Training Program',
+    issued: 'June 23rd, 2022',
+    duration: 'Full Programme',
     grade: 'Distinction',
-    status: 'Valid',
+    status: 'Valid — No Expiry',
     certFile: 'certificate.html'
   }
-  // To add more: 'JMH-YYYY-PHO-XXXX': { name: '...', course: '...', ... }
+  // To add more: 'YYYY-NNN': { name: '...', course: '...', ... }
 };
+
+// Auto-verify if QR code scan passes ?cert= in URL
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const certParam = params.get('cert');
+  if (certParam) {
+    document.getElementById('cert-input').value = certParam;
+    verifyCert();
+  }
+});
 
 function verifyCert() {
   const input = document.getElementById('cert-input').value.trim().toUpperCase();
