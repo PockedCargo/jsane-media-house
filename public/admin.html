@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jsane Media House Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body { font-family: Arial, sans-serif; background:#111; color:#fff; margin:0; padding:0; }
+header { padding:20px; background:#050505; text-align:center; font-size:24px; color:#00ffff; }
+.container { max-width:1000px; margin:40px auto; padding:20px; background:#222; border-radius:12px; }
+input, button { padding:10px; margin:8px 0; border-radius:6px; border:none; }
+button { cursor:pointer; background:#00ffff; color:#000; font-weight:bold; }
+img { max-width:200px; border-radius:8px; margin:8px; display:block; }
+.card { border:1px solid #333; padding:10px; margin:10px 0; border-radius:8px; }
+#loginForm { max-width:400px; margin:auto; }
+.alert { color:#ff5555; }
+</style>
+</head>
+<body>
+
+<header>Jsane Media House Admin Panel</header>
+
+<div class="container">
+
+  <!-- LOGIN -->
+  <div id="loginSection">
+    <h2>Login</h2>
+    <div id="loginForm">
+      <input type="email" id="email" placeholder="Email"><br>
+      <input type="password" id="password" placeholder="Password"><br>
+      <button id="loginBtn">Login</button>
+      <p class="alert" id="loginAlert"></p>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="adminSection" style="display:none;">
+    <h2>Dashboard</h2>
+    
+    <!-- Manage Portfolio Images -->
+    <section>
+      <h3>Portfolio Images</h3>
+      <input type="file" id="newImage">
+      <button id="addImageBtn">Add Image</button>
+      <div id="portfolioImages"></div>
+    </section>
+
+    <!-- Inline Editable Text -->
+    <section>
+      <h3>Editable Text</h3>
+      <div contenteditable="true" class="card" id="heroText">Photography • Videography • Digital • IT Solutions</div>
+      <div contenteditable="true" class="card" id="contactInfo">WhatsApp: +254708751365 | Email: jsanemediah@gmail.com</div>
+    </section>
+  </div>
+
+</div>
+
+<script>
+// ======= Supabase Config =======
+const supabaseUrl = "https://gsixwwydstdblcnslomh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXh3d3lkc3RkYmxjbnNsb21oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NzYxNzksImV4cCI6MjA4NjU1MjE3OX0.oC-qmnQtpPM5yYYPEQ6tBZoFK0O1lZJdMhYNhz_v_64";
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// ======= LOGIN =======
+document.getElementById('loginBtn').addEventListener('click', async () => {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  
+  if(error){
+    document.getElementById('loginAlert').textContent = "Login failed: " + error.message;
+  } else {
+    document.getElementById('loginSection').style.display = "none";
+    document.getElementById('adminSection').style.display = "block";
+    loadImages();
+  }
+});
+
+// ======= PORTFOLIO IMAGES =======
+async function loadImages() {
+  const { data, error } = await supabase
+    .from('portfolio')
+    .select('*')
+    .order('id', { ascending: true });
+
+  const container = document.getElementById('portfolioImages');
+  container.innerHTML = '';
+
+  if(data){
+    data.forEach(img => {
+      const div = document.createElement('div');
+      div.className = "card";
+      div.innerHTML = `<img src="${img.url}" alt="portfolio image">
+                       <button onclick="deleteImage(${img.id})">Delete</button>`;
+      container.appendChild(div);
+    });
+  }
+}
+
+document.getElementById('addImageBtn').addEventListener('click', async () => {
+  const fileInput = document.getElementById('newImage');
+  if(fileInput.files.length===0){ alert("Choose a file"); return; }
+
+  const file = fileInput.files[0];
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Date.now()}.${fileExt}`;
+  
+  // Upload to Supabase Storage
+  const { data, error } = await supabase.storage.from('portfolio-images').upload(fileName, file);
+  if(error){ alert("Upload error: " + error.message); return; }
+
+  // Get public URL
+  const { publicUrl } = supabase.storage.from('portfolio-images').getPublicUrl(fileName);
+
+  // Insert to DB
+  await supabase.from('portfolio').insert([{ url: publicUrl }]);
+  loadImages();
+});
+
+// ======= DELETE IMAGE =======
+async function deleteImage(id){
+  if(!confirm("Delete this image?")) return;
+  await supabase.from('portfolio').delete().eq('id', id);
+  loadImages();
+}
+</script>
+
+</body>
+</html>

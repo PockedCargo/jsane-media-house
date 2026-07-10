@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Certificate – Kelly Ayodi Lung'aho | Jsane Media House</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #1a1714;
+  display: flex; flex-direction: column; align-items: center;
+  min-height: 100vh; padding: 40px 20px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.print-info {
+  color: #7A756E; font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+  margin-bottom: 24px; text-align: center;
+}
+.print-info a { color: #C0392B; text-decoration: none; margin: 0 12px; }
+.print-info a:hover { text-decoration: underline; }
+
+/* ── CERTIFICATE SHELL ── */
+.certificate {
+  width: 100%; max-width: 720px;
+  background: #F5EED8;
+  position: relative;
+  padding: 60px 70px 50px;
+  color: #1a1a2e;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+
+/* Gold border frame */
+.certificate::before {
+  content: '';
+  position: absolute; inset: 12px;
+  border: 1.5px solid #C9A84C;
+  pointer-events: none; z-index: 10;
+}
+/* Inner thin border */
+.certificate::after {
+  content: '';
+  position: absolute; inset: 17px;
+  border: .5px solid rgba(201,168,76,.4);
+  pointer-events: none; z-index: 10;
+}
+
+/* ── WAVE SVG DECORATIONS ── */
+.wave-tl {
+  position: absolute; top: 0; left: 0;
+  width: 260px; pointer-events: none; z-index: 1;
+}
+.wave-tr {
+  position: absolute; top: 0; right: 0;
+  width: 200px; pointer-events: none; z-index: 1;
+  transform: scaleX(-1);
+}
+.wave-bl {
+  position: absolute; bottom: 0; left: 0;
+  width: 220px; pointer-events: none; z-index: 1;
+  transform: scaleY(-1);
+}
+.wave-br {
+  position: absolute; bottom: 0; right: 0;
+  width: 180px; pointer-events: none; z-index: 1;
+  transform: scale(-1,-1);
+}
+
+/* ── CONTENT (above waves) ── */
+.cert-content { position: relative; z-index: 5; text-align: center; }
+
+/* Logo */
+.cert-logo { height: 72px; margin-bottom: 18px; }
+
+/* Big script title */
+.cert-title-script {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 72px; color: #1a1a2e; line-height: 1;
+  margin-bottom: 4px;
+}
+.cert-subtitle {
+  font-size: 13px; letter-spacing: .35em; text-transform: uppercase;
+  color: #4a4a6a; margin-bottom: 36px; font-weight: 400;
+}
+
+/* Recipient label */
+.cert-given-to {
+  font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+  color: #7a6a50; margin-bottom: 10px; font-weight: 500;
+}
+
+/* Script name */
+.cert-name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 58px; color: #1a1a2e; line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+/* Name underline */
+.cert-name-line {
+  width: 70%; height: 1px; background: #C9A84C;
+  margin: 0 auto 28px;
+}
+
+/* Body text */
+.cert-body {
+  font-size: 13.5px; line-height: 1.85; color: #2a2a3a;
+  max-width: 480px; margin: 0 auto 32px;
+}
+.cert-body strong { font-weight: 600; }
+
+/* Footer row */
+.cert-footer {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-top: 28px;
+}
+
+/* Signature blocks */
+.cert-sig { text-align: center; min-width: 140px; }
+.sig-img {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 28px; color: #1a1a2e;
+  border-bottom: 1px solid #888; padding-bottom: 4px; margin-bottom: 6px;
+}
+.sig-name {
+  font-size: 11px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: #1a1a2e;
+}
+.sig-role { font-size: 11px; color: #7a6a50; }
+
+/* Red seal */
+.cert-seal {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.seal-circle {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: #B91C1C;
+  border: 3px solid #C9A84C;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+}
+.seal-circle span {
+  color: #fff; font-size: 8.5px; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 500; text-align: center;
+  line-height: 1.5;
+}
+.seal-date {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #7a6a50;
+}
+
+/* Bottom cert number row */
+.cert-bottom-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 24px; padding-top: 16px;
+  border-top: .5px solid rgba(201,168,76,.4);
+}
+.cert-number-label {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #9a8a6a;
+}
+.cert-number-val {
+  font-size: 11px; font-weight: 500; color: #4a3a2a; letter-spacing: .1em;
+}
+
+/* QR code */
+.qr-wrap { text-align: center; }
+.qr-wrap #qrcode canvas,
+.qr-wrap #qrcode img { width: 64px !important; height: 64px !important; }
+.qr-label {
+  font-size: 9px; letter-spacing: .15em; text-transform: uppercase;
+  color: #9a8a6a; margin-top: 5px;
+}
+
+/* Verify link */
+.cert-verify {
+  font-size: 9px; color: #9a8a6a; letter-spacing: .08em;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { background: white; padding: 0; }
+  .print-info { display: none; }
+  .certificate { box-shadow: none; max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="print-info">
+  <a href="index.html">← Back to Website</a>
+  &nbsp;·&nbsp;
+  <a href="verify.html">Verify this Certificate</a>
+  &nbsp;·&nbsp;
+  <a href="javascript:window.print()">🖨 Print / Save as PDF</a>
+</div>
+
+<div class="certificate">
+
+  <!-- WAVE DECORATIONS -->
+  <svg class="wave-tl" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 C40 20, 80 10, 100 60 C120 110, 60 140, 80 190 C100 240, 160 250, 140 280" stroke="#B91C1C" stroke-width="18" fill="none" opacity=".85"/>
+    <path d="M-10 0 C30 30, 70 20, 90 70 C110 120, 50 150, 70 200 C90 250, 150 260, 130 290" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity=".7"/>
+    <path d="M20 0 C60 15, 90 5, 110 50 C130 95, 75 125, 95 175 C115 225, 170 235, 155 265" stroke="#C9A84C" stroke-width=".8" fill="none" opacity=".5"/>
+    <path d="M0 40 C50 50, 30 90, 60 110 C90 130, 50 160, 30 140" stroke="#B91C1C" stroke-width="12" fill="none" opacity=".4"/>
+    <path d="M0 0 L50 0 L50 50 L0 50 Z" fill="#B91C1C" opacity=".08"/>
+  </svg>
+
+  <svg class="wave-tr" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 C40 20, 80 10, 100 60 C120 110, 60 140, 80 190 C100 240, 160 250, 140 280" stroke="#B91C1C" stroke-width="18" fill="none" opacity=".85"/>
+    <path d="M-10 0 C30 30, 70 20, 90 70 C110 120, 50 150, 70 200 C90 250, 150 260, 130 290" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity=".7"/>
+    <path d="M20 0 C60 15, 90 5, 110 50 C130 95, 75 125, 95 175" stroke="#C9A84C" stroke-width=".8" fill="none" opacity=".5"/>
+  </svg>
+
+  <svg class="wave-bl" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 200 C40 180, 80 190, 100 140 C120 90, 60 60, 80 10" stroke="#B91C1C" stroke-width="14" fill="none" opacity=".7"/>
+    <path d="M10 200 C50 175, 85 185, 105 135 C125 85, 65 55, 85 5" stroke="#C9A84C" stroke-width="1.2" fill="none" opacity=".6"/>
+  </svg>
+
+  <svg class="wave-br" viewBox="0 0 180 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 200 C40 180, 80 190, 100 140 C120 90, 60 60, 80 10" stroke="#B91C1C" stroke-width="14" fill="none" opacity=".7"/>
+    <path d="M10 200 C50 175, 85 185, 105 135 C125 85, 65 55, 85 5" stroke="#C9A84C" stroke-width="1.2" fill="none" opacity=".6"/>
+  </svg>
+
+  <!-- MAIN CONTENT -->
+  <div class="cert-content">
+
+    <img src="logo.png" alt="Jsane Media House" class="cert-logo">
+
+    <div class="cert-title-script">Certificate</div>
+    <div class="cert-subtitle">of Completion</div>
+
+    <div class="cert-given-to">This Certificate is Given To :</div>
+
+    <div class="cert-name">Kelly Ayodi Lung'aho</div>
+    <div class="cert-name-line"></div>
+
+    <p class="cert-body">
+      This certificate is presented to <strong>Kelly Ayodi Lung'aho</strong> in recognition of
+      the successful completion of the <strong>Professional Photography Training
+      Program</strong> on June 23rd, 2022.<br><br>
+      You have demonstrated strong creative vision, technical skill, and a refined
+      eye for storytelling, and are now equipped to capture meaningful, impactful
+      imagery with confidence.
+    </p>
+
+    <!-- FOOTER: sig | seal | sig -->
+    <div class="cert-footer">
+      <div class="cert-sig">
+        <div class="sig-img">Jimnah Kabiria</div>
+        <div class="sig-name">Jimnah Kabiria</div>
+        <div class="sig-role">Director</div>
+      </div>
+
+      <div class="cert-seal">
+        <div class="seal-circle">
+          <span>Jsane<br>Media<br>House</span>
+        </div>
+        <div class="seal-date">June 2022</div>
+      </div>
+
+      <div class="cert-sig">
+        <div class="sig-img">Edwin Benson</div>
+        <div class="sig-name">Edwin Benson</div>
+        <div class="sig-role">Principal</div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW: cert number | verify url | QR -->
+    <div class="cert-bottom-row">
+      <div>
+        <div class="cert-number-label">Cert No.</div>
+        <div class="cert-number-val">2020-024</div>
+        <div class="cert-verify">jsane-media-house.pages.dev/verify.html</div>
+      </div>
+      <div class="qr-wrap">
+        <div id="qrcode"></div>
+        <div class="qr-label">Scan to verify</div>
+      </div>
+    </div>
+
+  </div><!-- /cert-content -->
+</div><!-- /certificate -->
+
+<script>
+new QRCode(document.getElementById("qrcode"), {
+  text: "https://jsane-media-house.pages.dev/verify.html?cert=2020-024",
+  width: 64,
+  height: 64,
+  colorDark: "#1a1a2e",
+  colorLight: "#F5EED8",
+  correctLevel: QRCode.CorrectLevel.M
+});
+</script>
+
+</body>
+</html>
