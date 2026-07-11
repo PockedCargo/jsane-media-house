@@ -165,12 +165,7 @@ footer a { color: var(--red); text-decoration: none; }
       <input
         type="text"
         id="cert-input"
-        name="cert-lookup-field"
         placeholder="e.g. 2020-024"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
         onkeydown="if(event.key==='Enter') verifyCert()"
       >
       <button class="btn-verify" onclick="verifyCert()">Verify &nbsp;<i class="fas fa-search"></i></button>
