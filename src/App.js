@@ -49,14 +49,14 @@ function App() {
   ];
 
   const photos = [
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/718A0334.webp", category: "studio" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/IHP_1322.webp", category: "studio" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/IMG_0059.webp", category: "embassy" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/IMG_0061.webp", category: "embassy" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/IMG_0268.webp", category: "events" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/IMG_0328.webp", category: "events" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/IMG_0458-1.webp", category: "events" },
-    { src: "https://customer-assets.emergentagent.com/job_a536ecb9-313f-47dd-b765-665569b29c99/artifacts/Photos/Nhif_1_1.webp", category: "events" }
+    { src: "/Photos/718A0334.webp", category: "studio" },
+    { src: "/Photos/IHP_1322.webp", category: "studio" },
+    { src: "/Photos/IMG_0059.webp", category: "embassy" },
+    { src: "/Photos/IMG_0061.webp", category: "embassy" },
+    { src: "/Photos/IMG_0268.webp", category: "events" },
+    { src: "/Photos/IMG_0328.webp", category: "events" },
+    { src: "/Photos/IMG_0458-1.webp", category: "events" },
+    { src: "/Photos/Nhif_1_1.webp", category: "events" }
   ];
 
   const videos = [
