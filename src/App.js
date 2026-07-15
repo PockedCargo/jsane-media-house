@@ -96,15 +96,6 @@ function App() {
 
   return (
     <div className="app-container" data-testid="main-app">
-      {/* Fixed Background Spline */}
-      <div className="spline-bg-fixed">
-        <spline-viewer 
-          url={SPLINE_URL}
-          loading-anim
-          style={{ width: "100%", height: "100%", opacity: 0.16 }}
-        />
-      </div>
-
       {/* Navigation */}
       <motion.nav 
         className={`nav ${scrolled ? "scrolled" : ""}`}
@@ -254,13 +245,6 @@ function App() {
 
       {/* Services Section */}
       <section id="services" className="services-section" data-testid="services-section">
-        <div className="section-spline">
-          <spline-viewer 
-            url={SPLINE_URL}
-            loading-anim
-            style={{ width: "100%", height: "100%", opacity: 0.2 }}
-          />
-        </div>
         
         <div className="container">
           <motion.div
@@ -394,14 +378,6 @@ function App() {
 
       {/* Videos Section */}
       <section id="videos" className="videos-section" data-testid="videos-section">
-        <div className="section-spline">
-          <spline-viewer 
-            url={SPLINE_URL}
-            loading-anim
-            style={{ width: "100%", height: "100%", opacity: 0.15 }}
-          />
-        </div>
-        
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -443,14 +419,6 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className="contact-section" data-testid="contact-section">
-        <div className="contact-spline">
-          <spline-viewer 
-            url={SPLINE_URL}
-            loading-anim
-            style={{ width: "100%", height: "100%", opacity: 0.14 }}
-          />
-        </div>
-        
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
